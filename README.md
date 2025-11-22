@@ -5,19 +5,20 @@ We hope to deploy it as an OSS tool.
 <br>
 
 We are developing using the following framework.
-- Chalce Framework and Python (For Backend)
+- Chalice Framework and Python (For Backend)
 - React and Node.js (For Frontend)
 - GithubActions (For CICD)
 <br>
 
-You can also deploy this tool in your environment by preparing the following setup.It uses a serverless architecture and can be operated at a very low cost.  
+You can also deploy this tool in your environment by preparing the following setup.  
+It uses a serverless architecture and can be operated at a very low cost.  
 - AWS S3
 - AWS CloudFront
 - AWS Api Gateway
 - AWS Lambda
 - CustomDomain and SSL Certification
 
-## Application URL
+## Sample Application URL
 https://www.cork-up.net
 
 ## How to use react
