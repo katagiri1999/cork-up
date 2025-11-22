@@ -1,5 +1,21 @@
 # cork-up
-Repository for cork-up
+This is a public repository for cork-up.  
+This repository deploys a knowledge sharing tool.  
+We hope to deploy it as an OSS tool.
+<br>
+
+We are developing using the following framework.
+- Chalce Framework and Python (For Backend)
+- React and Node.js (For Frontend)
+- GithubActions (For CICD)
+<br>
+
+You can also deploy this tool in your environment by preparing the following setup.It uses a serverless architecture and can be operated at a very low cost.  
+- AWS S3
+- AWS CloudFront
+- AWS Api Gateway
+- AWS Lambda
+- CustomDomain and SSL Certification
 
 ## How to use react
 - dev
