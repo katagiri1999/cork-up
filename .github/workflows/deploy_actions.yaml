@@ -1,0 +1,38 @@
+name: Deploy Actions
+on:
+  push:
+    branches:
+      - main
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: us-east-1
+  S3_BUCKET_NAME: cork-up
+  S3_CLOUDFRONT_ID: ${{ secrets.S3_CLOUDFRONT_ID }}
+
+jobs:
+  deploy-react:
+      name: deploy react
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./react
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v6
+
+        - name: Setup Node
+          uses: actions/setup-node@v6
+          with:
+            node-version: 24
+
+        - name: Build
+          run: |
+            npm i
+            npm run build
+
+        - name: Deploy Frontend
+          run: aws s3 cp ./dist ${{ env.S3_BUCKET_NAME }} --recursive
+
+        - name: Clear Cache
+          run: aws cloudfront create-invalidation --distribution-id ${{ env.S3_CLOUDFRONT_ID }} --paths '/*'
