@@ -1,4 +1,6 @@
 # cork-up
+[![Deploy Actions](https://github.com/katagiri1999/cork-up/actions/workflows/deploy_actions.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/deploy_actions.yaml)
+
 This is a public repository for cork-up.  
 This repository deploys a knowledge sharing tool.  
 We hope to deploy it as an OSS tool.
