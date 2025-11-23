@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
 import {
   Box,
   Container,
   Typography,
 } from "@mui/material";
-import Store from '../store/store.jsx';
+import userStore from '../store/user_store.jsx';
 import Header from "../components/header.jsx";
 
 function Menu() {
-  const { id_token } = Store();
+  const { id_token } = userStore();
 
   return (
     <>

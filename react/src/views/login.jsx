@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -9,12 +8,14 @@ import {
   Alert,
 } from "@mui/material";
 import * as utils from "../utils.js";
-import Store from '../store/store.jsx';
+import userStore from '../store/user_store.jsx';
+import screenStore from '../store/screen_store.jsx';
 import Header from "../components/header.jsx";
 
 function Login() {
   const navigate = useNavigate();
-  const { email, setEmail, password, setPassword, setIdToken } = Store();
+  const { email, setEmail, password, setPassword, setIdToken } = userStore();
+  const { isLoginError, setLoginError } = screenStore();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,10 +25,8 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const [outputError, setError] = useState(false);
-  useEffect(() => { }, [outputError]);
   function IsError() {
-    if (outputError) {
+    if (isLoginError) {
       return (
         <Alert severity="error">Invalid Email or PW</Alert>
       );
@@ -46,9 +45,9 @@ function Login() {
     );
 
     if (res.status != 200) {
-      setError(true);
+      setLoginError(true);
     } else {
-      setError(false);
+      setLoginError(false);
       setPassword("");
       setIdToken(res.id_token);
       navigate("/menu");
@@ -60,7 +59,6 @@ function Login() {
       <title>ログイン</title>
       <Header />
       <Container maxWidth="xs">
-
         <Box
           sx={{ marginTop: 10 }}
         >
