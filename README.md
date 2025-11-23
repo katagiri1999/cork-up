@@ -1,5 +1,5 @@
 # cork-up
-[![Deploy Actions](https://github.com/katagiri1999/cork-up/actions/workflows/deploy_actions.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/deploy_actions.yaml)
+[![CICD Actions](https://github.com/katagiri1999/cork-up/actions/workflows/main.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/main.yaml)
 
 This is a public repository for cork-up.  
 This repository deploys a knowledge sharing tool.  
