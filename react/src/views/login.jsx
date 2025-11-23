@@ -8,7 +8,7 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import * as utils from "./utils.js";
+import * as utils from "../utils.js";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,10 +23,10 @@ function Login() {
     setPwValue(event.target.value);
   };
 
-  const [error, setError] = useState(false);
-  useEffect(() => { }, [error]);
+  const [outputError, setError] = useState(false);
+  useEffect(() => { }, [outputError]);
   function IsError() {
-    if (error) {
+    if (outputError) {
       return (
         <Alert severity="error">Invalid Email or PW</Alert>
       );

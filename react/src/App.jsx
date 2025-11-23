@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './login.jsx';
-import Menu from './menu.jsx';
+import Login from './views/login.jsx';
+import Menu from './views/menu.jsx';
 
 function NotFound() {
   return <h1>404 Page Not Found</h1>;
