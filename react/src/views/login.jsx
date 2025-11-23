@@ -11,6 +11,7 @@ import * as utils from "../utils.js";
 import userStore from '../store/user_store.jsx';
 import screenStore from '../store/screen_store.jsx';
 import Header from "../components/header.jsx";
+import { Loading, loadingStart, loadingEnd } from '../components/loading.jsx';
 
 function Login() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function Login() {
   };
 
   const onClickSignin = async () => {
+    loadingStart();
     var res = await utils.requests(
       `${utils.API_HOST}/${utils.API_VER}/login`,
       "POST",
@@ -52,12 +54,15 @@ function Login() {
       setIdToken(res.id_token);
       navigate("/menu");
     }
+
+    loadingEnd();
   };
 
   return (
     <>
       <title>ログイン</title>
       <Header />
+      <Loading />
       <Container maxWidth="xs">
         <Box
           sx={{ marginTop: 10 }}
