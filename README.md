@@ -1,5 +1,6 @@
 # cork-up
-[![CICD Actions](https://github.com/katagiri1999/cork-up/actions/workflows/main.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/main.yaml)
+[![Chalice CICD](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_chalice.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_chalice.yaml)  
+[![React CICD](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_react.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_react.yaml)
 
 This is a public repository for cork-up.  
 This repository deploys a knowledge sharing tool.  

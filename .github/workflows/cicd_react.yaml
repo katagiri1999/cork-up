@@ -1,6 +1,8 @@
-name: SUB CICD React
+name: CICD React
 on:
-  workflow_call:
+  push:
+    branches:
+      - main
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -9,8 +11,7 @@ env:
   S3_CLOUDFRONT_ID: ${{ secrets.S3_CLOUDFRONT_ID }}
 
 jobs:
-  cicd-react:
-    name: deploy react
+  main:
     runs-on: ubuntu-latest
     defaults:
       run:
