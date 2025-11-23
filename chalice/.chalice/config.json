@@ -1,0 +1,16 @@
+{
+    "version": "2.0",
+    "app_name": "cork-up",
+    "tags": {
+        "Name": "cork-up"
+    },
+    "lambda_memory_size": 128,
+    "lambda_timeout": 60,
+    "autogen_policy": false,
+    "iam_policy_file": "corkup_policy.json",
+    "stages": {
+        "main": {
+            "api_gateway_stage": "v0r1"
+        }
+    }
+}
