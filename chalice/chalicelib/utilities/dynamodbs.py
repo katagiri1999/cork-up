@@ -1,7 +1,7 @@
 import boto3
 from mypy_boto3_dynamodb import DynamoDBServiceResource
 
-from chalicelib.utilities import config
+from chalicelib import config
 
 
 def get_user_info(email: str) -> dict:

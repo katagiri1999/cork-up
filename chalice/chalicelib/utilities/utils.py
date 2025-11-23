@@ -3,7 +3,7 @@ import traceback
 
 import jwt
 
-from chalicelib.utilities import config
+from chalicelib import config
 
 
 def error_handler(e: Exception) -> dict:
