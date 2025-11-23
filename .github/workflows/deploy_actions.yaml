@@ -12,27 +12,49 @@ env:
 
 jobs:
   deploy-react:
-      name: deploy react
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          working-directory: ./react
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v6
+    name: deploy react
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
 
-        - name: Setup Node
-          uses: actions/setup-node@v6
-          with:
-            node-version: 24
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
 
-        - name: Build
-          run: |
-            npm i
-            npm run build
+      - name: Build
+        run: |
+          npm i
+          npm run build
 
-        - name: Deploy Frontend
-          run: aws s3 cp ./dist "s3://${{ env.S3_BUCKET_NAME }}" --recursive
+      - name: Deploy Frontend
+        run: aws s3 cp ./dist "s3://${{ env.S3_BUCKET_NAME }}" --recursive
 
-        - name: Clear Cache
-          run: aws cloudfront create-invalidation --distribution-id ${{ env.S3_CLOUDFRONT_ID }} --paths '/*'
+      - name: Clear Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ env.S3_CLOUDFRONT_ID }} --paths '/*'
+
+  deploy-chalice:
+    name: deploy chalice
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./chalice
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.11
+
+      - name: Build
+        run: |
+          pip install -r requirements.txt
+
+      - name: Deploy Chalice
+        run: chalice deploy --stage main
