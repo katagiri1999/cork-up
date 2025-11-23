@@ -4,20 +4,24 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+import Header from "../components/header";
 
 function Menu() {
   return (
-    <Container maxWidth="xs">
+    <>
       <title>メニュー</title>
-      <Box
-        sx={{ marginTop: 5 }}
-      >
-        <Typography component="h1" variant="h4">
-          メニュー
-        </Typography>
+      <Header />
+      <Container maxWidth="xs">
+        <Box
+          sx={{ marginTop: 5 }}
+        >
+          <Typography component="h1" variant="h4">
+            メニュー
+          </Typography>
 
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </>
   );
 };
 

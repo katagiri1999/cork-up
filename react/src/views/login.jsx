@@ -9,6 +9,7 @@ import {
   Alert,
 } from "@mui/material";
 import * as utils from "../utils.js";
+import Header from "../components/header";
 
 function Login() {
   const navigate = useNavigate();
@@ -53,48 +54,52 @@ function Login() {
   };
 
   return (
-    <Container maxWidth="xs">
+    <>
       <title>ログイン</title>
-      <Box
-        sx={{ marginTop: 5 }}
-      >
-        <Typography component="h1" variant="h4">
-          ログイン
-        </Typography>
+      <Header />
+      <Container maxWidth="xs">
 
-        <Box component="form" noValidate sx={{ marginTop: "1%" }}>
-          <TextField
-            value={valueEmail}
-            onChange={handleEmailChange}
-            margin="normal"
-            fullWidth
-            label="メールアドレス"
-          />
-
-          <TextField
-            value={valuePw}
-            onChange={handlePwChange}
-            margin="normal"
-            fullWidth
-            label="パスワード"
-            type="password"
-            autoComplete="current-password"
-          />
-
-          <Button
-            onClick={onClickSignin}
-            fullWidth
-            variant="contained"
-            sx={{ marginTop: "5%", marginBottom: "2%" }}
-          >
+        <Box
+          sx={{ marginTop: 10 }}
+        >
+          <Typography component="h1" variant="h4">
             ログイン
-          </Button>
+          </Typography>
+
+          <Box component="form" noValidate sx={{ marginTop: "1%" }}>
+            <TextField
+              value={valueEmail}
+              onChange={handleEmailChange}
+              margin="normal"
+              fullWidth
+              label="メールアドレス"
+            />
+
+            <TextField
+              value={valuePw}
+              onChange={handlePwChange}
+              margin="normal"
+              fullWidth
+              label="パスワード"
+              type="password"
+              autoComplete="current-password"
+            />
+
+            <Button
+              onClick={onClickSignin}
+              fullWidth
+              variant="contained"
+              sx={{ marginTop: "5%", marginBottom: "2%" }}
+            >
+              ログイン
+            </Button>
+          </Box>
         </Box>
-      </Box>
 
-      <IsError />
+        <IsError />
 
-    </Container>
+      </Container>
+    </>
   );
 };
 
