@@ -4,9 +4,12 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import Header from "../components/header";
+import Store from '../store/store.jsx';
+import Header from "../components/header.jsx";
 
 function Menu() {
+  const { id_token } = Store();
+
   return (
     <>
       <title>メニュー</title>

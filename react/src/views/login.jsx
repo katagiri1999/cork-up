@@ -9,19 +9,19 @@ import {
   Alert,
 } from "@mui/material";
 import * as utils from "../utils.js";
-import Header from "../components/header";
+import Store from '../store/store.jsx';
+import Header from "../components/header.jsx";
 
 function Login() {
   const navigate = useNavigate();
+  const { email, setEmail, password, setPassword, id_token, setIdToken } = Store();
 
-  const [valueEmail, setEmailValue] = useState("");
   const handleEmailChange = (event) => {
-    setEmailValue(event.target.value);
+    setEmail(event.target.value);
   };
 
-  const [valuePw, setPwValue] = useState("");
   const handlePwChange = (event) => {
-    setPwValue(event.target.value);
+    setPassword(event.target.value);
   };
 
   const [outputError, setError] = useState(false);
@@ -40,8 +40,8 @@ function Login() {
       "POST",
       {},
       {
-        email: valueEmail,
-        password: valuePw
+        email: email,
+        password: password,
       }
     );
 
@@ -49,6 +49,8 @@ function Login() {
       setError(true);
     } else {
       setError(false);
+      setPassword("");
+      setIdToken(res.id_token);
       navigate("/menu");
     }
   };
@@ -68,7 +70,7 @@ function Login() {
 
           <Box component="form" noValidate sx={{ marginTop: "1%" }}>
             <TextField
-              value={valueEmail}
+              value={email}
               onChange={handleEmailChange}
               margin="normal"
               fullWidth
@@ -76,7 +78,7 @@ function Login() {
             />
 
             <TextField
-              value={valuePw}
+              value={password}
               onChange={handlePwChange}
               margin="normal"
               fullWidth
