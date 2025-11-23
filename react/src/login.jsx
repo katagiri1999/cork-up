@@ -35,7 +35,7 @@ function Login() {
 
   const onClickSignin = async () => {
     var res = await utils.requests(
-      "https://i49186bbs1.execute-api.us-east-1.amazonaws.com/v0r1/login",
+      `${utils.API_HOST}/${utils.API_VER}/login`,
       "POST",
       {},
       {

@@ -1,3 +1,6 @@
+export const API_VER = import.meta.env.VITE__API_VER;
+export const API_HOST = import.meta.env.VITE_API_HOST;
+
 export async function requests(url, method, headers = {}, params = {}) {
     if (!headers["Content-Type"]) {
         headers["Content-Type"] = "application/json";
