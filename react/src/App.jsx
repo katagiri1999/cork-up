@@ -42,12 +42,12 @@ function App() {
 
   return (
     <Container maxWidth="xs">
-      <title>Sign in</title>
+      <title>ログイン</title>
       <Box
         sx={{ marginTop: 5 }}
       >
         <Typography component="h1" variant="h4">
-          Sign in
+          ログイン
         </Typography>
 
         <Box component="form" noValidate sx={{ marginTop: "1%" }}>
@@ -56,7 +56,7 @@ function App() {
             onChange={handleEmailChange}
             margin="normal"
             fullWidth
-            label="email"
+            label="メールアドレス"
           />
 
           <TextField
@@ -64,7 +64,7 @@ function App() {
             onChange={handlePwChange}
             margin="normal"
             fullWidth
-            label="password"
+            label="パスワード"
             type="password"
             autoComplete="current-password"
           />
@@ -75,7 +75,7 @@ function App() {
             variant="contained"
             sx={{ marginTop: "5%", marginBottom: "2%" }}
           >
-            Sign In
+            ログイン
           </Button>
         </Box>
       </Box>
