@@ -18,6 +18,7 @@ It uses a serverless architecture and can be operated at a very low cost.
 - AWS CloudFront
 - AWS Api Gateway
 - AWS Lambda
+- AWS DynamoDB
 - CustomDomain and SSL Certification
 
 ## Sample Application URL
