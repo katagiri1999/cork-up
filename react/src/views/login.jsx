@@ -14,7 +14,7 @@ import Header from "../components/header.jsx";
 
 function Login() {
   const navigate = useNavigate();
-  const { email, setEmail, password, setPassword, id_token, setIdToken } = Store();
+  const { email, setEmail, password, setPassword, setIdToken } = Store();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
