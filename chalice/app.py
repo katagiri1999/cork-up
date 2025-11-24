@@ -15,6 +15,13 @@ def login_api_handler():
     return http_response_handler(res)
 
 
+@app.route("/logout", methods=["POST"], content_types=["application/json"], cors=True)
+def login_api_handler():
+    params = http_request_handler(app.current_request)
+    res = func_login.main(params)
+    return http_response_handler(res)
+
+
 def http_request_handler(params: Request) -> dict:
     try:
         r_params = {
