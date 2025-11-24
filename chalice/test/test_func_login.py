@@ -16,6 +16,7 @@ def test_func_login1():
 
     body: dict = response["body"]
     assert body.get("id_token") != None
+    assert body.get("email") != None
 
 
 def test_func_login2():

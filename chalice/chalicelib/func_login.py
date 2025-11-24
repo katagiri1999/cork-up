@@ -25,6 +25,7 @@ def main(params: dict) -> dict:
         id_token = utils.generate_jwt(email)
 
         res = {
+            "email": email,
             "id_token": id_token,
         }
 
