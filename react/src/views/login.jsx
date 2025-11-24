@@ -6,6 +6,7 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/header.jsx";
@@ -18,6 +19,10 @@ function Login() {
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, setIdToken } = userStore();
   const { isLoading, setLoading, isLoginError, setLoginError } = screenStore();
+
+  useEffect(() => {
+    setIdToken("");
+  }, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -63,7 +68,7 @@ function Login() {
     <>
       <title>ログイン</title>
       <Header />
-      <Loading loading={isLoading}/>
+      <Loading loading={isLoading} />
 
       <Container maxWidth="xs">
         <Box
