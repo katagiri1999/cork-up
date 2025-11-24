@@ -53,7 +53,7 @@ function Login() {
       setPassword("");
       setIdToken(res.id_token);
       navigate("/menu");
-    }
+    };
 
     loadingEnd();
   };

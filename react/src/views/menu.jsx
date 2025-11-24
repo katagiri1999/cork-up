@@ -3,11 +3,9 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import userStore from '../store/user_store.jsx';
 import Header from "../components/header.jsx";
 
 function Menu() {
-  const { id_token } = userStore();
 
   return (
     <>
