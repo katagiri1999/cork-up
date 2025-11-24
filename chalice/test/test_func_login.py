@@ -7,7 +7,7 @@ def test_func_login1():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json"
+            "content-type": "application/json"
         },
         "body": {
             "email": "test@gmail.com",
@@ -28,7 +28,7 @@ def test_func_login2():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json"
+            "content-type": "application/json"
         },
         "body": {
             "email": "",
@@ -45,7 +45,7 @@ def test_func_login3():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json"
+            "content-type": "application/json"
         },
         "body": {
             "email": "test@gmail.com",
@@ -61,7 +61,7 @@ def test_func_login4():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json"
+            "content-type": "application/json"
         },
         "body": {
             "email": "hogehoge@gmail.com",

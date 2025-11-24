@@ -7,8 +7,8 @@ def test_func_logout1(id_token):
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {id_token}"
+            "content-type": "application/json",
+            "authorization": f"Bearer {id_token}"
         },
         "body": {},
         "query_params": {},
@@ -25,8 +25,8 @@ def test_func_logout2():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json",
-            "Authorization": ""
+            "content-type": "application/json",
+            "authorization": ""
         },
         "body": {},
         "query_params": {},
@@ -39,7 +39,7 @@ def test_func_logout2():
     params = {
         "method": "POST",
         "headers": {
-            "Content-Type": "application/json",
+            "content-type": "application/json",
         },
         "body": {},
         "query_params": {},

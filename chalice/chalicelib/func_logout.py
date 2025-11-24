@@ -4,7 +4,7 @@ from chalicelib.utilities import utils
 def main(params: dict) -> dict:
     try:
         headers: dict = params["headers"]
-        id_token: str = headers.get("Authorization")
+        id_token: str = headers.get("authorization")
 
         if id_token:
             id_token = id_token.replace("Bearer ", "")
