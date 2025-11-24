@@ -1,4 +1,4 @@
-import '../styles/loading.css';
+import '../assets/loading.css';
 
 /**
  * ローディングイメージ 表示
