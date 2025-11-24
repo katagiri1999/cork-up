@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/header.jsx";
-import { Loading, loadingStart, loadingEnd } from '../components/loading.jsx';
+import Loading from '../components/loading.jsx';
 import screenStore from '../store/screen_store.jsx';
 import userStore from '../store/user_store.jsx';
 import * as utils from "../utils.js";
@@ -17,7 +17,7 @@ import * as utils from "../utils.js";
 function Login() {
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, setIdToken } = userStore();
-  const { isLoginError, setLoginError } = screenStore();
+  const { isLoginError, setLoginError, setLoading } = screenStore();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -36,7 +36,7 @@ function Login() {
   };
 
   const onClickSignin = async () => {
-    loadingStart();
+    setLoading(true);
     var res = await utils.requests(
       `${utils.API_HOST}/${utils.API_VER}/login`,
       "POST",
@@ -56,7 +56,7 @@ function Login() {
       navigate("/menu");
     };
 
-    loadingEnd();
+    setLoading(false);
   };
 
   return (
