@@ -23,9 +23,9 @@ export function loadingEnd() {
 export const Loading = () => {
 
     return (
-        <div className="LOADING" id="LOADING">
-            <div className="LOADING-ANIMATION">
-                <div className="LOADING-ANIMATION-CIRCLE"></div>
+        <div id="LOADING">
+            <div id="LOADING-ANIMATION">
+                <div id="LOADING-ANIMATION-CIRCLE"></div>
             </div>
         </div>
     );

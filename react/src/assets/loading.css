@@ -1,5 +1,5 @@
 /* ローディング画面の背景 */
-.LOADING {
+#LOADING {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,7 +23,7 @@
 }
 
 /*ローディング部分のアニメーション*/
-div.LOADING>div.LOADING-ANIMATION {
+#LOADING #LOADING-ANIMATION {
     position: absolute;
     top: 0;
     right: 0;
@@ -34,7 +34,7 @@ div.LOADING>div.LOADING-ANIMATION {
     height: 50px;
 }
 
-div.LOADING-ANIMATION>div.LOADING-ANIMATION-CIRCLE {
+#LOADING-ANIMATION #LOADING-ANIMATION-CIRCLE {
     width: 100%;
     height: 100%;
     margin: auto;
