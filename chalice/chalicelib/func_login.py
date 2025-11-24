@@ -11,7 +11,7 @@ def main(params: dict) -> dict:
             raise Exception({
                 "status_code": 400,
                 "exception": "Bad Request",
-                "error_code": "missing_parameters",
+                "error_code": "func_login.missing_parameters",
             })
 
         user_info = dynamodbs.get_user_info(email=email)
@@ -19,7 +19,7 @@ def main(params: dict) -> dict:
             raise Exception({
                 "status_code": 401,
                 "exception": "Unauthorized",
-                "error_code": "invalid_credentials",
+                "error_code": "func_login.invalid_credentials",
             })
 
         id_token = utils.generate_jwt(email)
