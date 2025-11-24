@@ -6,7 +6,8 @@ export async function requests(url, method, headers = {}, params = {}) {
         headers["Content-Type"] = "application/json";
     }
 
-    console.log("request");
+    console.group("API Request");
+    console.log(`[${method}]: ${url}`);
     console.log({ url: url, method: method, headers: headers, params: params });
 
     if (method == "GET" || method == "DELETE") {
@@ -28,7 +29,7 @@ export async function requests(url, method, headers = {}, params = {}) {
     var body = await res.json();
     body.status = res.status;
 
-    console.log(`response: ${res.status}`);
     console.log(body);
+    console.groupEnd();
     return body;
 };
