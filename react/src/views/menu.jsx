@@ -16,7 +16,7 @@ function Menu() {
         <Box
           sx={{ marginTop: 5 }}
         >
-          <Typography component="h1" variant="h4">
+          <Typography variant="h4" align="center">
             メニュー
           </Typography>
 

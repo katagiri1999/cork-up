@@ -68,7 +68,7 @@ function Login() {
         <Box
           sx={{ marginTop: 10 }}
         >
-          <Typography component="h1" variant="h4">
+          <Typography variant="h4" align="center">
             ログイン
           </Typography>
 
