@@ -28,7 +28,6 @@ function Profile() {
 
   const logOutClick = async () => {
     setOpenProfile(false);
-    setIdToken("");
 
     setLoading(true);
     await utils.requests(
@@ -39,6 +38,7 @@ function Profile() {
     );
     setLoading(false);
 
+    setIdToken("");
     navigate("/");
   };
 
