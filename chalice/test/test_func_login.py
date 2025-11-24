@@ -5,10 +5,15 @@ from .conftest import logger
 
 def test_func_login1():
     params = {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
         "body": {
             "email": "test@gmail.com",
             "password": "test"
-        }
+        },
+        "query_params": {},
     }
     response = func_login.main(params)
     logger(response)
@@ -21,10 +26,15 @@ def test_func_login1():
 
 def test_func_login2():
     params = {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
         "body": {
             "email": "",
             "password": ""
-        }
+        },
+        "query_params": {},
     }
     response = func_login.main(params)
     logger(response)
@@ -33,10 +43,15 @@ def test_func_login2():
 
 def test_func_login3():
     params = {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
         "body": {
             "email": "test@gmail.com",
             "password": "invalid_password"
-        }
+        },
+        "query_params": {},
     }
     response = func_login.main(params)
     logger(response)
