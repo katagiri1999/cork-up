@@ -56,3 +56,19 @@ def test_func_login3():
     response = func_login.main(params)
     logger(response)
     assert response["status_code"] == 401
+
+def test_func_login4():
+    params = {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "email": "hogehoge@gmail.com",
+            "password": "hogehoge"
+        },
+        "query_params": {},
+    }
+    response = func_login.main(params)
+    logger(response)
+    assert response["status_code"] == 401
