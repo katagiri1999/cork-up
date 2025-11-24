@@ -4,11 +4,18 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
+import { useNavigate } from "react-router-dom";
 
+import Loading from '../components/loading.jsx';
 import screenStore from '../store/screen_store.jsx';
+import userStore from '../store/user_store.jsx';
+import * as utils from "../utils.js";
 
 function Profile() {
-  const { isOpenProfile, setOpenProfile } = screenStore();
+  const navigate = useNavigate();
+
+  const { id_token, setIdToken } = userStore();
+  const { setLoading, isOpenProfile, setOpenProfile } = screenStore();
 
   const handleClickOpen = () => {
     setOpenProfile(true);
@@ -18,35 +25,55 @@ function Profile() {
     setOpenProfile(false);
   };
 
-  const logOutClick = () => {
-    console.log("click logout");
+  const logOutClick = async () => {
+    setOpenProfile(false);
+    setIdToken("");
+
+    setLoading(true);
+    await utils.requests(
+      `${utils.API_HOST}/${utils.API_VER}/logout`,
+      "POST",
+      { "Authorization": `Bearer ${id_token}` },
+      {}
+    );
+    setLoading(false);
+
+    navigate("/");
   };
 
-  return (
-    <>
-      <IconButton
-        color="inherit"
-        onClick={handleClickOpen}
-        sx={{
-          position: "absolute",
-          right: 10,
-        }}>
-        <AccountCircle sx={{ fontSize: 30 }} />
-      </IconButton>
+  if (id_token) {
+    return (
+      <>
+        <Loading />
 
-      <Dialog
-        open={isOpenProfile}
-        onClose={handleClose}
-      >
-        <DialogTitle>
-          ログアウトしますか？
-        </DialogTitle>
-        <DialogActions>
-          <Button onClick={logOutClick}>はい</Button>
-        </DialogActions>
-      </Dialog>
-    </>
-  );
+        <IconButton
+          color="inherit"
+          onClick={handleClickOpen}
+          sx={{
+            position: "absolute",
+            right: 10,
+          }}>
+          <AccountCircle sx={{ fontSize: 30 }} />
+        </IconButton>
+
+        <Dialog
+          open={isOpenProfile}
+          onClose={handleClose}
+        >
+          <DialogTitle>
+            ログアウトしますか？
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={logOutClick}>はい</Button>
+          </DialogActions>
+        </Dialog>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    );
+  };
 }
 
 export default Profile;

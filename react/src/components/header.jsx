@@ -22,35 +22,6 @@ function Header() {
     setDrawerOpen((prevState) => !prevState);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h5" sx={{ my: 2 }}>
-        Menu
-      </Typography>
-      <Divider />
-      <List>
-        <ListItem disablePadding>
-          <Button
-            component={Link}
-            to="/Information"
-            sx={{ width: "100%", mt: 3 }}
-          >
-            Information
-          </Button>
-        </ListItem>
-        <ListItem disablePadding>
-          <Button
-            component={Link}
-            to="https://github.com/katagiri1999/cork-up"
-            sx={{ width: "100%", mt: 3 }}
-          >
-            Github
-          </Button>
-        </ListItem>
-      </List>
-    </Box>
-  );
-
   return (
     <Box>
       <AppBar position="static" sx={{ mb: 7 }}>
@@ -75,6 +46,7 @@ function Header() {
 
         </Toolbar>
       </AppBar>
+
       <Drawer
         open={drawewrOpen}
         onClose={handleDrawerToggle}
@@ -82,7 +54,32 @@ function Header() {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
         }}
       >
-        {drawer}
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+          <Typography variant="h5" sx={{ my: 2 }}>
+            Menu
+          </Typography>
+          <Divider />
+          <List>
+            <ListItem disablePadding>
+              <Button
+                component={Link}
+                to="/Information"
+                sx={{ width: "100%", mt: 3 }}
+              >
+                Information
+              </Button>
+            </ListItem>
+            <ListItem disablePadding>
+              <Button
+                component={Link}
+                to="https://github.com/katagiri1999/cork-up"
+                sx={{ width: "100%", mt: 3 }}
+              >
+                Github
+              </Button>
+            </ListItem>
+          </List>
+        </Box>
       </Drawer>
     </Box>
   );
