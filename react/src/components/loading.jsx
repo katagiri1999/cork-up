@@ -5,7 +5,6 @@ import '../assets/loading.css';
  */
 export function loadingStart() {
     const loading = document.getElementById('LOADING');
-    if (!loading) return;
     loading.style.display = 'initial';
     loading.style.opacity = '1';
 }
@@ -15,7 +14,6 @@ export function loadingStart() {
  */
 export function loadingEnd() {
     const loading = document.getElementById('LOADING');
-    if (!loading) return;
     loading.style.opacity = '0';
     loading.style.display = 'none';
 }
