@@ -3,6 +3,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -14,12 +17,27 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import screenStore from '../store/screen_store.jsx';
 
-function DrawerAppBar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+function Header() {
+  const { isOpenProfile, setOpenProfile } = screenStore();
+
+  const handleClickOpen = () => {
+    setOpenProfile(true);
+  };
+
+  const handleClose = () => {
+    setOpenProfile(false);
+  };
+
+  const logOutClick = () => {
+    console.log("click logout");
+  };
+
+  const [drawewrOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setDrawerOpen((prevState) => !prevState);
   };
 
   const drawer = (
@@ -73,6 +91,7 @@ function DrawerAppBar() {
 
           <IconButton
             color="inherit"
+            onClick={handleClickOpen}
             sx={{
               position: "absolute",
               right: 10,
@@ -80,10 +99,22 @@ function DrawerAppBar() {
             <AccountCircle sx={{ fontSize: 30 }} />
           </IconButton>
 
+          <Dialog
+            open={isOpenProfile}
+            onClose={handleClose}
+          >
+            <DialogTitle>
+              ログアウトしますか？
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={logOutClick}>はい</Button>
+            </DialogActions>
+          </Dialog>
+
         </Toolbar>
       </AppBar>
       <Drawer
-        open={mobileOpen}
+        open={drawewrOpen}
         onClose={handleDrawerToggle}
         sx={{
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
@@ -95,7 +126,7 @@ function DrawerAppBar() {
   );
 }
 
-DrawerAppBar.propTypes = {
+Header.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -103,4 +134,4 @@ DrawerAppBar.propTypes = {
   window: PropTypes.func,
 };
 
-export default DrawerAppBar;
+export default Header;

@@ -7,6 +7,8 @@ const screenStore = create(persist((set) => ({
   setLoginError: (isLoginError) => set({ isLoginError }),
   isLoading: false,
   setLoading: (isLoading) => set({ isLoading }),
+  isOpenProfile: false,
+  setOpenProfile: (isOpenProfile) => set({ isOpenProfile }),
 }), {
   name: "screen-store"
 }));
