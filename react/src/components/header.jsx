@@ -1,3 +1,4 @@
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -21,7 +22,7 @@ function DrawerAppBar() {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const navItems = ['Information', 'Contact'];
+  const navItems = ['Information', 'Github'];
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h5" sx={{ my: 2 }}>
@@ -52,24 +53,34 @@ function DrawerAppBar() {
             size='large'
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{fontSize: 30}}/>
           </IconButton>
           <Typography
             variant="h6"
           >
             Cork-Up
           </Typography>
+
+          <IconButton
+            color="inherit"
+            sx={{
+              position: "absolute",
+              right: 10,
+            }}>
+            <AccountCircle sx={{fontSize: 30}}/>
+          </IconButton>
+
         </Toolbar>
       </AppBar>
-        <Drawer
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          sx={{
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
-          }}
-        >
-          {drawer}
-        </Drawer>
+      <Drawer
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
+        }}
+      >
+        {drawer}
+      </Drawer>
     </Box>
   );
 }
