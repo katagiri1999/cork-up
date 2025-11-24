@@ -4,8 +4,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
-import { useNavigate } from "react-router-dom";
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from "react-router-dom";
 
 import Loading from '../components/loading.jsx';
 import screenStore from '../store/screen_store.jsx';
@@ -16,7 +16,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const { email, id_token, setIdToken } = userStore();
-  const { setLoading, isOpenProfile, setOpenProfile } = screenStore();
+  const { isLoading, setLoading, isOpenProfile, setOpenProfile } = screenStore();
 
   const handleClickOpen = () => {
     setOpenProfile(true);
@@ -45,7 +45,7 @@ function Profile() {
   if (id_token) {
     return (
       <>
-        <Loading />
+        <Loading loading={isLoading} />
 
         <IconButton
           color="inherit"

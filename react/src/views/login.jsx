@@ -17,7 +17,7 @@ import * as utils from "../utils.js";
 function Login() {
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, setIdToken } = userStore();
-  const { isLoginError, setLoginError, setLoading } = screenStore();
+  const { isLoading, setLoading, isLoginError, setLoginError } = screenStore();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -63,7 +63,8 @@ function Login() {
     <>
       <title>ログイン</title>
       <Header />
-      <Loading />
+      <Loading loading={isLoading}/>
+
       <Container maxWidth="xs">
         <Box
           sx={{ marginTop: 10 }}
