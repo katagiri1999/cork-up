@@ -7,12 +7,12 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from "@mui/material";
 
 
 function DrawerAppBar() {
@@ -22,7 +22,6 @@ function DrawerAppBar() {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const navItems = ['Information', 'Github'];
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h5" sx={{ my: 2 }}>
@@ -30,13 +29,24 @@ function DrawerAppBar() {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <Button
+            component={Link}
+            to="/Information"
+            sx={{ width: "100%", mt: 3 }}
+          >
+            Information
+          </Button>
+        </ListItem>
+        <ListItem disablePadding>
+          <Button
+            component={Link}
+            to="https://github.com/katagiri1999/cork-up"
+            sx={{ width: "100%", mt: 3 }}
+          >
+            Github
+          </Button>
+        </ListItem>
       </List>
     </Box>
   );
@@ -53,7 +63,7 @@ function DrawerAppBar() {
             size='large'
             sx={{ mr: 2 }}
           >
-            <MenuIcon sx={{fontSize: 30}}/>
+            <MenuIcon sx={{ fontSize: 30 }} />
           </IconButton>
           <Typography
             variant="h6"
@@ -67,7 +77,7 @@ function DrawerAppBar() {
               position: "absolute",
               right: 10,
             }}>
-            <AccountCircle sx={{fontSize: 30}}/>
+            <AccountCircle sx={{ fontSize: 30 }} />
           </IconButton>
 
         </Toolbar>
