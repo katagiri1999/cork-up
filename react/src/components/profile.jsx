@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from "react-router-dom";
+import Tooltip from '@mui/material/Tooltip';
 
 import Loading from '../components/loading.jsx';
 import screenStore from '../store/screen_store.jsx';
@@ -14,7 +15,7 @@ import * as utils from "../utils.js";
 function Profile() {
   const navigate = useNavigate();
 
-  const { id_token, setIdToken } = userStore();
+  const { email, id_token, setIdToken } = userStore();
   const { setLoading, isOpenProfile, setOpenProfile } = screenStore();
 
   const handleClickOpen = () => {
@@ -53,19 +54,26 @@ function Profile() {
             position: "absolute",
             right: 10,
           }}>
-          <AccountCircle sx={{ fontSize: 30 }} />
+
+          <Tooltip title={email}>
+            <AccountCircle sx={{ fontSize: 30 }} />
+          </Tooltip>
+
         </IconButton>
 
         <Dialog
           open={isOpenProfile}
           onClose={handleClose}
         >
+
           <DialogTitle>
             ログアウトしますか？
           </DialogTitle>
+
           <DialogActions>
             <Button onClick={logOutClick}>はい</Button>
           </DialogActions>
+
         </Dialog>
       </>
     );

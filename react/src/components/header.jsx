@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 
 import Profile from './profile.jsx';
 
@@ -34,8 +35,13 @@ function Header() {
             size='large'
             sx={{ mr: 2 }}
           >
-            <MenuIcon sx={{ fontSize: 30 }} />
+
+            <Tooltip title="Menu">
+              <MenuIcon sx={{ fontSize: 30 }} />
+            </Tooltip>
+
           </IconButton>
+
           <Typography
             variant="h6"
           >
@@ -54,11 +60,14 @@ function Header() {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
         }}
       >
+
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
           <Typography variant="h5" sx={{ my: 2 }}>
             Menu
           </Typography>
+
           <Divider />
+
           <List>
             <ListItem disablePadding>
               <Button
@@ -79,6 +88,7 @@ function Header() {
               </Button>
             </ListItem>
           </List>
+
         </Box>
       </Drawer>
     </Box>
