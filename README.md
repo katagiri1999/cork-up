@@ -1,43 +1,38 @@
 # Cork-Up
 
-## Workflow Status
+## CICD Status
 [![Chalice CICD](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_chalice.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_chalice.yaml)  
 [![React CICD](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_react.yaml/badge.svg)](https://github.com/katagiri1999/cork-up/actions/workflows/cicd_react.yaml)
 
 ## Sample Application URL
 https://www.cork-up.net
 
-## Description
-This is a public repository for cork-up.  
-This repository deploys a knowledge sharing tool.  
-We hope to deploy it as an OSS tool.
+## 概要
+Cork-Up用のPublicリポジトリです。ドキュメント管理ツールを開発しています。  
+Serverless Architectureを使用した、シンプルなフロントエンド/バックエンド構成となります。
+Serverlessを採用することで、非常に安価に構築/運用しています。  
+OSSアプリケーションとして公開しておりますので、気軽にご利用ください。
+
+## 技術要素
+本アプリケーションでは以下のフレームワーク/技術要素を使用しています。
+
+| 技術要素/Framework | 言語    | 用途     |
+| -                  | -       | -        |
+| Chalice            | Python  | Backend  |
+| React              | Node.js | Frontend |
+| GithubActions      | shell   | CICD     |
+
 <br>
 
-We are developing using the following framework.
-- Chalice Framework and Python (For Backend)
-- React and Node.js (For Frontend)
-- GithubActions (For CICD)
-<br>
+本アプリケーションでは以下のサービスを使用しています。以下サービスを用意し、任意の環境にデプロイされることを想定しています。  
 
-You can also deploy this tool in your environment by preparing the following setup.  
-It uses a serverless architecture and can be operated at a very low cost.  
-- AWS S3
-- AWS CloudFront
-- AWS Api Gateway
-- AWS Lambda
-- AWS DynamoDB
-- CustomDomain and SSL Certification
+| サービス          | 用途                       |
+| -                | -                          | 
+| AWS S3           | Frontend Resource 格納/配信 |
+| AWS CloudFront   | Frontend Resource 配信      |
+| AWS Lambda       | Backend API 実行環境         |
+| AWS ApiGateway   | Backend API 配信             |
+| AWS DynamoDB     | DB                         |
+| お名前.com        | DNS                        |
 
-## How to use react
-run dev server
-```powershell
-$ cd ./react
-$ npm i
-$ npm run dev
-```
-build package
-```powershell
-$ cd ./react
-$ npm i
-$ npm run build
-```
+![drowio](cork-up.drawio.svg)
