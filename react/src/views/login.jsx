@@ -21,7 +21,8 @@ function Login() {
   const { isLoading, setLoading, isLoginError, setLoginError } = screenStore();
 
   useEffect(() => {
-    setIdToken("");
+    userStore.getState().reset();
+    screenStore.getState().reset();
   }, []);
 
   const handleEmailChange = (event) => {

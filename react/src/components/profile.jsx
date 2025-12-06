@@ -15,7 +15,7 @@ import * as utils from "../utils.js";
 function Profile() {
   const navigate = useNavigate();
 
-  const { email, id_token, setIdToken } = userStore();
+  const { email, id_token } = userStore();
   const { isLoading, setLoading, isOpenProfile, setOpenProfile } = screenStore();
 
   const handleClickOpen = () => {
@@ -38,7 +38,8 @@ function Profile() {
     );
     setLoading(false);
 
-    setIdToken("");
+    userStore.getState().reset();
+    screenStore.getState().reset();
     navigate("/");
   };
 
