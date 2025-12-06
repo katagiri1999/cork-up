@@ -3,6 +3,7 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+
 import Header from "../components/header.jsx";
 
 function Main() {
