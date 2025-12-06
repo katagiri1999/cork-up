@@ -38,7 +38,11 @@ function Explorer() {
   ];
 
   const handleItemClick = (_, itemId) => {
-    console.log('item id:', itemId);
+    if (itemId.endsWith('.md')) {
+      console.log('click file:', itemId);
+    } else {
+      console.log('click folder:', itemId);
+    }
   };
 
   if (id_token) {
