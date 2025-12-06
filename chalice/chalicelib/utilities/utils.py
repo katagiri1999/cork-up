@@ -66,7 +66,7 @@ def generate_jwt(email: str) -> str:
         raise e
 
 
-def decode_id_token(id_token: str) -> dict:
+def verify_id_token(id_token: str) -> dict:
     try:
         try:
             id_token = id_token.replace("Bearer ", "")
@@ -84,8 +84,8 @@ def decode_id_token(id_token: str) -> dict:
 
         except Exception:
             raise Exception({
-                "exception": f"invalid id_token",
-                "error_code": "decode_id_token.001",
+                "exception": "Unauthorized",
+                "error_code": "verify_id_token.001",
                 "status_code": 401,
             })
 
