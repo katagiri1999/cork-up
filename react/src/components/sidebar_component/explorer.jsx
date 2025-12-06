@@ -1,12 +1,13 @@
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import FolderIcon from '@mui/icons-material/Folder';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import {
   Box,
   Typography,
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
+
 import userStore from "../../store/user_store";
-import FolderIcon from '@mui/icons-material/Folder';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 
 function Explorer() {
   const { id_token } = userStore();
