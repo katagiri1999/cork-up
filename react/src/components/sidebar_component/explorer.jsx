@@ -4,7 +4,11 @@ import {
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 
+import userStore from "../../store/user_store";
+
 function Explorer() {
+  const { id_token } = userStore();
+
   const tree = [
     {
       id: 'main',
@@ -31,17 +35,23 @@ function Explorer() {
     },
   ];
 
-  return (
-    <>
-      <Typography variant="h5" sx={{ my: 2 }}>
-        Explorer
-      </Typography>
+  if (id_token) {
+    return (
+      <>
+        <Typography variant="h5" sx={{ my: 2 }}>
+          Explorer
+        </Typography>
 
-      <Box sx={{ m: 5 }}>
-        <RichTreeView items={tree} />
-      </Box>
-    </>
-  );
+        <Box sx={{ m: 5 }}>
+          <RichTreeView items={tree} />
+        </Box>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    );
+  }
 };
 
 export default Explorer;
