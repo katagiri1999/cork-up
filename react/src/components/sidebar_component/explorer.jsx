@@ -6,6 +6,7 @@ import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import userStore from "../../store/user_store";
 import FolderIcon from '@mui/icons-material/Folder';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 
 function Explorer() {
   const { id_token } = userStore();
@@ -57,7 +58,8 @@ function Explorer() {
             onItemClick={handleItemClick}
             slots={{
               expandIcon: FolderIcon,
-              collapseIcon: FolderOpenIcon
+              collapseIcon: FolderOpenIcon,
+              endIcon: ArticleOutlinedIcon,
             }}
           />
         </Box>
