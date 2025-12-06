@@ -26,9 +26,9 @@ function Explorer() {
         { id: '/sub-community.md', label: '/hogehoge4.md' },
         { id: '/sub-pro.md', label: '/hogehoge5.md' },
         {
-          id: '/sub-premium', label: '/hogehoge6', children:
+          id: '/sub-hogehoge', label: '/sub-hogehoge', children:
             [
-              { id: '/sub-premium-pro.md', label: '/sub-premium-pro.md' }
+              { id: '/sub-hogehoge.md', label: '/sub-hogehoge.md' }
             ]
         },
       ],
