@@ -3,7 +3,6 @@ import {
   Typography,
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-
 import userStore from "../../store/user_store";
 
 function Explorer() {
@@ -12,28 +11,32 @@ function Explorer() {
   const tree = [
     {
       id: '/main',
-      label: '/main',
+      label: 'main',
       children: [
-        { id: '/main-community.md', label: '/hogehoge1.md' },
-        { id: '/main-pro.md', label: '/hogehoge2.md' },
-        { id: '/main-premium.md', label: '/hogehoge3.md' },
+        { id: '/main/main-community.md', label: 'hogehoge1.md' },
+        { id: '/main/main-pro.md', label: 'hogehoge2.md' },
+        { id: '/main/main-premium.md', label: 'hogehoge3.md' },
       ],
     },
     {
-      id: '/sub',
-      label: '/sub',
+      id: '/work',
+      label: 'work',
       children: [
-        { id: '/sub-community.md', label: '/hogehoge4.md' },
-        { id: '/sub-pro.md', label: '/hogehoge5.md' },
+        { id: '/work/community.md', label: 'community.md' },
+        { id: '/work/pro.md', label: 'pro.md' },
         {
-          id: '/sub-hogehoge', label: '/sub-hogehoge', children:
+          id: '/work/sub', label: 'sub', children:
             [
-              { id: '/sub-hogehoge.md', label: '/sub-hogehoge.md' }
+              { id: '/work/sub/hogehoge.md', label: 'hogehoge.md' }
             ]
         },
       ],
     },
   ];
+
+  const handleItemClick = (_, itemId) => {
+    console.log('item id:', itemId);
+  };
 
   if (id_token) {
     return (
@@ -43,10 +46,14 @@ function Explorer() {
         </Typography>
 
         <Box sx={{ m: 5 }}>
-          <RichTreeView items={tree} />
+          <RichTreeView
+            items={tree}
+            onItemClick={handleItemClick}
+          />
         </Box>
       </>
     );
+
   } else {
     return (
       <></>
