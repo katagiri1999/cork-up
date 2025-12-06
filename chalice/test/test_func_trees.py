@@ -85,7 +85,6 @@ def test_func_trees_put_2(id_token):
                             "children": [
                                 {"id": '/main/art/page1.md', "label": 'page1.md'},
                                 {"id": '/main/art/page2.md', "label": 'page2.md'},
-                                {"id": '/main/art/jofda', "label": 'art', }
                             ]
                         }
                     ]

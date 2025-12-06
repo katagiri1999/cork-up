@@ -90,7 +90,7 @@ def sort_tree(trees: list) -> list:
 
     def sort_key(node) -> tuple[bool, str]:
         node_id: str = node["id"]
-        is_file = "." in node_id 
+        is_file = ".md" in node_id 
         # directories first (is_file False -> 0), then files (is_file True -> 1)
         return (is_file, node_id or "")
 
