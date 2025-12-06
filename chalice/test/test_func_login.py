@@ -57,6 +57,7 @@ def test_func_login3():
     logger(response)
     assert response["status_code"] == 401
 
+
 def test_func_login4():
     params = {
         "method": "POST",

@@ -35,6 +35,7 @@ def test_func_logout2():
     logger(response)
     assert response["status_code"] == 400
 
+
 def test_func_logout2():
     params = {
         "method": "POST",
