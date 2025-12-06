@@ -11,24 +11,24 @@ function Explorer() {
 
   const tree = [
     {
-      id: 'main',
-      label: 'main',
+      id: '/main',
+      label: '/main',
       children: [
-        { id: 'main-community', label: 'hogehoge1' },
-        { id: 'main-pro', label: 'hogehoge2' },
-        { id: 'main-premium', label: 'hogehoge3' },
+        { id: '/main-community.md', label: '/hogehoge1.md' },
+        { id: '/main-pro.md', label: '/hogehoge2.md' },
+        { id: '/main-premium.md', label: '/hogehoge3.md' },
       ],
     },
     {
-      id: 'sub',
-      label: 'sub',
+      id: '/sub',
+      label: '/sub',
       children: [
-        { id: 'sub-community', label: 'hogehoge4' },
-        { id: 'sub-pro', label: 'hogehoge5' },
+        { id: '/sub-community.md', label: '/hogehoge4.md' },
+        { id: '/sub-pro.md', label: '/hogehoge5.md' },
         {
-          id: 'sub-premium', label: 'hogehoge6', children:
+          id: '/sub-premium', label: '/hogehoge6', children:
             [
-              { id: 'sub-premium-pro', label: 'hogehoge7' }
+              { id: '/sub-premium-pro.md', label: '/sub-premium-pro.md' }
             ]
         },
       ],
