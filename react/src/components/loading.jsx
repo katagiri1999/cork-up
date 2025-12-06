@@ -1,29 +1,16 @@
-import { useEffect } from 'react';
-
-import '../assets/loading.css';
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Loading(props) {
   var isLoading = props.loading;
 
-  useEffect(() => {
-    const loadingElement = document.getElementById('LOADING');
-
-    if (isLoading) {
-      loadingElement.style.display = 'initial';
-      loadingElement.style.opacity = '1';
-    } else {
-      loadingElement.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-  }, [isLoading]);
-
   return (
-    <div id="LOADING">
-      <div id="LOADING-ANIMATION">
-        <div id="LOADING-ANIMATION-CIRCLE"></div>
-      </div>
-    </div>
+    <Backdrop
+      sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+      open={isLoading}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
   );
 };
 
