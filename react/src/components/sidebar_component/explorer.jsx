@@ -45,7 +45,11 @@ function Explorer() {
           Explorer
         </Typography>
 
-        <Box sx={{ m: 5 }}>
+        <Box
+          sx={{
+            m: 5,
+            textAlign: 'left',
+          }}>
           <RichTreeView
             items={tree}
             onItemClick={handleItemClick}
