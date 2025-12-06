@@ -4,6 +4,8 @@ import {
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import userStore from "../../store/user_store";
+import FolderIcon from '@mui/icons-material/Folder';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 
 function Explorer() {
   const { id_token } = userStore();
@@ -53,6 +55,10 @@ function Explorer() {
           <RichTreeView
             items={tree}
             onItemClick={handleItemClick}
+            slots={{
+              expandIcon: FolderIcon,
+              collapseIcon: FolderOpenIcon
+            }}
           />
         </Box>
       </>
