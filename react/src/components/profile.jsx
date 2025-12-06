@@ -67,7 +67,7 @@ function Profile() {
         >
 
           <DialogTitle>
-            ログアウトしますか？
+            <b>{email}</b> からログアウトしますか？
           </DialogTitle>
 
           <DialogActions>
