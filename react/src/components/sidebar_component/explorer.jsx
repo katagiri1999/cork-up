@@ -3,21 +3,36 @@ import FolderIcon from '@mui/icons-material/Folder';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import {
   Box,
+  Button,
   Typography,
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import userStore from "../../store/user_store";
+import { useState } from 'react';
 
 function Explorer() {
   const { id_token, tree } = userStore();
+  const [currentDir, setCurrentDir] = useState(null);
 
   const handleItemClick = (_, itemId) => {
     if (itemId.endsWith('.md')) {
-      console.log('click file:', itemId);
+      var dirName = itemId.substring(0, itemId.lastIndexOf('/'));
+      console.log('File clicked:', dirName);
     } else {
-      console.log('click folder:', itemId);
+      var dirName = itemId;
+      console.log('Directory clicked:', dirName);
     }
+    setCurrentDir(dirName);
+  };
+
+  const onClickNewFolder = () => {
+    console.log('New Folder clicked:', currentDir);
+  };
+
+  const onClickNewFile = () => {
+    console.log('New File clicked:', currentDir);
   };
 
   if (id_token && tree) {
@@ -41,6 +56,17 @@ function Explorer() {
               endIcon: ArticleOutlinedIcon,
             }}
           />
+        </Box>
+
+        <Box sx={{
+          m: 3
+        }}>
+          <Button onClick={onClickNewFolder}>
+            <CreateNewFolderIcon />
+          </Button>
+          <Button onClick={onClickNewFile}>
+            <NoteAddOutlinedIcon />
+          </Button>
         </Box>
       </>
     );

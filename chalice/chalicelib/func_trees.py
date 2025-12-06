@@ -39,6 +39,8 @@ def get(params) -> dict:
                 "error_code": "func_trees.not_found",
             })
 
+        tree_info["tree"] = sort_tree(tree_info["tree"])
+
         res = {
             "email": tree_info["email"],
             "tree": tree_info["tree"],
@@ -63,6 +65,8 @@ def put(params) -> dict:
                 "error_code": "func_trees.missing_parameters",
             })
 
+        tree = sort_tree(tree)
+
         dynamodbs.update_tree_info(email=email, tree=tree)
         tree_info = dynamodbs.get_tree_info(email=email)
 
@@ -75,3 +79,25 @@ def put(params) -> dict:
 
     except Exception as e:
         raise e
+
+
+def sort_tree(trees: list) -> list:
+    """
+    Sort tree by id: directories (id not ending with .md) come first, then files.
+    """
+    if not isinstance(trees, list) or len(trees) == 0:
+        return trees
+
+    def sort_key(node) -> tuple[bool, str]:
+        node_id: str = node["id"]
+        is_file = "." in node_id 
+        # directories first (is_file False -> 0), then files (is_file True -> 1)
+        return (is_file, node_id or "")
+
+    trees.sort(key=sort_key)
+
+    for node in trees:
+        if isinstance(node.get("children"), list):
+            node["children"] = sort_tree(node["children"])
+
+    return trees
