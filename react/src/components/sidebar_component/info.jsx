@@ -1,0 +1,39 @@
+import LaunchIcon from '@mui/icons-material/Launch';
+import { Button } from "@mui/material";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { Link } from 'react-router-dom';
+
+function Info() {
+
+  return (
+    <>
+      <List sx={{ mt: 2, }}>
+        <ListItem>
+          <Button
+            component={Link}
+            to="/information"
+            target="_blank"
+            sx={{ width: "100%" }}
+          >
+            Information
+            <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button
+            component={Link}
+            to="https://github.com/katagiri1999/cork-up"
+            target="_blank"
+            sx={{ width: "100%" }}
+          >
+            Github
+            <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
+          </Button>
+        </ListItem>
+      </List>
+    </>
+  );
+}
+
+export default Info;

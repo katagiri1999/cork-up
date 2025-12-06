@@ -58,7 +58,7 @@ function Login() {
       setLoginError(false);
       setPassword("");
       setIdToken(res.id_token);
-      navigate("/explorer");
+      navigate("/main");
     };
 
     setLoading(false);

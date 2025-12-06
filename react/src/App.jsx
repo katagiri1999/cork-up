@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Explorer from './views/explorer.jsx';
 import Information from './views/information.jsx';
 import Login from './views/login.jsx';
+import Main from './views/main.jsx';
 
 function NotFound() {
   return <h1>404</h1>;
@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/explorer" element={<Explorer />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/information" element={<Information />} />
 
         <Route path="*" element={<NotFound />} />

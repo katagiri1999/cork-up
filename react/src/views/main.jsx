@@ -6,19 +6,16 @@ import {
 
 import Header from "../components/header.jsx";
 
-function Menu() {
+function Main() {
 
   return (
     <>
-      <title>Explorer</title>
+      <title>Main</title>
       <Header />
       <Container maxWidth="xs">
         <Box
           sx={{ marginTop: 5 }}
         >
-          <Typography variant="h4" align="center">
-            Explorer
-          </Typography>
 
         </Box>
       </Container>
@@ -26,4 +23,4 @@ function Menu() {
   );
 };
 
-export default Menu;
+export default Main;
