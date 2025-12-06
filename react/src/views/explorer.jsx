@@ -10,14 +10,14 @@ function Menu() {
 
   return (
     <>
-      <title>メニュー</title>
+      <title>Explorer</title>
       <Header />
       <Container maxWidth="xs">
         <Box
           sx={{ marginTop: 5 }}
         >
           <Typography variant="h4" align="center">
-            メニュー
+            Explorer
           </Typography>
 
         </Box>

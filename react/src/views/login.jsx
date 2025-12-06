@@ -58,7 +58,7 @@ function Login() {
       setLoginError(false);
       setPassword("");
       setIdToken(res.id_token);
-      navigate("/menu");
+      navigate("/explorer");
     };
 
     setLoading(false);
@@ -66,7 +66,7 @@ function Login() {
 
   return (
     <>
-      <title>ログイン</title>
+      <title>Login</title>
       <Header />
       <Loading loading={isLoading} />
 
@@ -75,7 +75,7 @@ function Login() {
           sx={{ marginTop: 10 }}
         >
           <Typography variant="h4" align="center">
-            ログイン
+            Login
           </Typography>
 
           <Box component="form" noValidate sx={{ marginTop: "1%" }}>
