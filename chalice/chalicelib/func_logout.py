@@ -6,9 +6,6 @@ def main(params: dict) -> dict:
         headers: dict = params["headers"]
         id_token: str = headers.get("authorization")
 
-        if id_token:
-            id_token = id_token.replace("Bearer ", "")
-
         if not id_token:
             raise Exception({
                 "status_code": 400,
