@@ -1,3 +1,4 @@
+import LaunchIcon from '@mui/icons-material/Launch';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
@@ -72,19 +73,23 @@ function Header() {
             <ListItem disablePadding>
               <Button
                 component={Link}
-                to="/Information"
+                to="/information"
+                target="_blank"
                 sx={{ width: "100%", mt: 3 }}
               >
                 Information
+                <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
               </Button>
             </ListItem>
             <ListItem disablePadding>
               <Button
                 component={Link}
                 to="https://github.com/katagiri1999/cork-up"
+                target="_blank"
                 sx={{ width: "100%", mt: 3 }}
               >
                 Github
+                <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
               </Button>
             </ListItem>
           </List>
