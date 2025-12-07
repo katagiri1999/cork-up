@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import Profile from './profile.jsx';
-import Sidebar from './sidebar.jsx';
+import Profile from './header_component/profile.jsx';
+import Sidebar from './header_component/sidebar.jsx';
 
 function Header() {
 

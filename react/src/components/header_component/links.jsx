@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { Link } from 'react-router-dom';
 
-function Info() {
+function Links() {
 
   return (
     <>
@@ -36,4 +36,4 @@ function Info() {
   );
 }
 
-export default Info;
+export default Links;

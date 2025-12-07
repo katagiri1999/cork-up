@@ -26,10 +26,74 @@ export async function requests(url, method, headers = {}, params = {}) {
     }
 
     var res = await fetch(url, detail);
-    var body = await res.json();
-    body.status = res.status;
+    res = {
+        status: res.status,
+        headers: res.headers,
+        body: await res.json(),
+    };
 
-    console.log(body);
+    console.log(res);
     console.groupEnd();
-    return body;
+    return res;
 };
+
+export function update_tree(tree, insert_node) {
+    const { parent_id, label } = insert_node;
+
+    // 新しいノードは children を持たない → ファイル
+    // children を持たせたい場合は呼び出し側で空配列を渡す
+    const new_node = {
+        id: `${parent_id}/${label}`,
+        label,
+        // デフォルトではファイル扱い（childrenなし）
+        // フォルダを作りたい場合は insert_node に children: [] を渡す
+        children: insert_node.children ?? undefined,
+    };
+
+    function recursive_insert(node) {
+        if (node.id === parent_id) {
+            node.children ??= []; // children がなければ初期化
+            node.children.push(new_node);
+            return true;
+        }
+
+        if (node.children) {
+            for (const child of node.children) {
+                if (recursive_insert(child)) return true;
+            }
+        }
+        return false;
+    }
+
+    recursive_insert(tree);
+    return tree;
+}
+
+export function is_valid_new_node(tree, parent_id, label) {
+    // check if id null or empty
+    if (!label) {
+        return false;
+    }
+
+    // check if id exists in tree
+    const id = `${parent_id}/${label}`;
+    let isUnique = true;
+
+    function recursive_check(node) {
+        if (node.id === id) {
+            isUnique = false;
+            return;
+        }
+        if (node.children) {
+            for (const child of node.children) {
+                recursive_check(child);
+                if (!isUnique) {
+                    return;
+                }
+            }
+        }
+    }
+
+    recursive_check(tree);
+    return isUnique;
+}

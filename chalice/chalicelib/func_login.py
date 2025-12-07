@@ -26,6 +26,7 @@ def main(params: dict) -> dict:
 
         res = {
             "email": email,
+            "options": user_info["options"],
             "id_token": id_token,
         }
 

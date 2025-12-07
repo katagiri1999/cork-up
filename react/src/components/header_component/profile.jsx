@@ -1,22 +1,24 @@
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import Loading from '../components/loading.jsx';
-import screenStore from '../store/screen_store.jsx';
-import userStore from '../store/user_store.jsx';
-import * as utils from "../utils.js";
+import userStore from '../../store/user_store.jsx';
+import * as utils from "../../utils.js";
+import Loading from '../loading.jsx';
 
 function Profile() {
   const navigate = useNavigate();
 
-  const { email, id_token, setIdToken } = userStore();
-  const { isLoading, setLoading, isOpenProfile, setOpenProfile } = screenStore();
+  const { email, id_token } = userStore();
+  const [isOpenProfile, setOpenProfile] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  var initialName = email.charAt(0).toUpperCase();
 
   const handleClickOpen = () => {
     setOpenProfile(true);
@@ -38,7 +40,7 @@ function Profile() {
     );
     setLoading(false);
 
-    setIdToken("");
+    userStore.getState().reset();
     navigate("/");
   };
 
@@ -56,7 +58,7 @@ function Profile() {
           }}>
 
           <Tooltip title={email}>
-            <AccountCircle sx={{ fontSize: 30 }} />
+            <Avatar>{initialName}</Avatar>
           </Tooltip>
 
         </IconButton>
@@ -67,7 +69,7 @@ function Profile() {
         >
 
           <DialogTitle>
-            ログアウトしますか？
+            <b>{email}</b> からログアウトしますか？
           </DialogTitle>
 
           <DialogActions>

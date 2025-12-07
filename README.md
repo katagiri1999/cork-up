@@ -35,4 +35,19 @@ OSSアプリケーションとして公開しておりますので、気軽に�
 | AWS DynamoDB     | DB                         |
 | お名前.com        | DNS                        |
 
+## アーキテクチャ
 ![drowio](cork-up.drawio.svg)
+
+## テーブル設計
+
+### user table
+| key              | type  | desctiption                 | option |
+| -                | -     | -                           | -      |
+| email            | str   | email                       | Partition Key |
+| options          | object | options                    |        |
+
+### tree table
+| key              | type   | desctiption                 | option |
+| -                | -      | -                           | -      |
+| email            | str    | email                       | Partition Key |
+| tree             | object | tree content                |        |

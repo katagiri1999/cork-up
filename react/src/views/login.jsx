@@ -6,22 +6,24 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/header.jsx";
 import Loading from '../components/loading.jsx';
-import screenStore from '../store/screen_store.jsx';
 import userStore from '../store/user_store.jsx';
 import * as utils from "../utils.js";
 
 function Login() {
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, setIdToken } = userStore();
-  const { isLoading, setLoading, isLoginError, setLoginError } = screenStore();
+  const [isLoginError, setLoginError] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setIdToken("");
+    userStore.getState().reset();
+    setLoginError(false);
+    setLoading(false);
   }, []);
 
   const handleEmailChange = (event) => {
@@ -30,14 +32,6 @@ function Login() {
 
   const handlePwChange = (event) => {
     setPassword(event.target.value);
-  };
-
-  function IsError() {
-    if (isLoginError) {
-      return (
-        <Alert severity="error">Invalid Email or PW</Alert>
-      );
-    };
   };
 
   const onClickSignin = async () => {
@@ -57,7 +51,7 @@ function Login() {
     } else {
       setLoginError(false);
       setPassword("");
-      setIdToken(res.id_token);
+      setIdToken(res.body.id_token);
       navigate("/main");
     };
 
@@ -108,7 +102,11 @@ function Login() {
           </Box>
         </Box>
 
-        <IsError />
+        {isLoginError ?
+          <Alert severity="error">Invalid Email or PW</Alert>
+          :
+          <></>
+        }
 
       </Container>
     </>
