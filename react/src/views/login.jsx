@@ -102,10 +102,8 @@ function Login() {
           </Box>
         </Box>
 
-        {isLoginError ?
-          <Alert severity="error">Invalid Email or PW</Alert>
-          :
-          <></>
+        {isLoginError &&
+          <Alert severity="error">IDまたはパスワードが正しくありません</Alert>
         }
 
       </Container>

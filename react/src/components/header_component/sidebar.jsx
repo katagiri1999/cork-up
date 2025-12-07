@@ -48,9 +48,7 @@ function Sidebar() {
         <Box sx={{ textAlign: 'center' }}>
 
           <Explorer />
-
           <Divider />
-
           <Links />
 
         </Box>

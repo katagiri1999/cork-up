@@ -69,6 +69,26 @@ export function update_tree(tree, insert_node) {
     return tree;
 }
 
+export function delete_tree_node(tree, target_id) {
+    function recursive_delete(node, parent) {
+        if (node.id === target_id) {
+            if (parent && parent.children) {
+                parent.children = parent.children.filter(child => child.id !== target_id);
+            }
+            return true;
+        }
+        if (node.children) {
+            for (const child of node.children) {
+                if (recursive_delete(child, node)) return true;
+            }
+        }
+        return false;
+    }
+
+    recursive_delete(tree, null);
+    return tree;
+}
+
 export function is_valid_new_node(tree, parent_id, label) {
     // check if id null or empty
     if (!label) {

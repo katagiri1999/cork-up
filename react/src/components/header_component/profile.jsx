@@ -44,7 +44,7 @@ function Profile() {
     navigate("/");
   };
 
-  if (id_token) {
+  if (id_token && email) {
     return (
       <>
         <Loading loading={isLoading} />
@@ -57,7 +57,7 @@ function Profile() {
             right: 10,
           }}>
 
-          <Tooltip title={email}>
+          <Tooltip title={`${email} でログイン中`}>
             <Avatar>{initialName}</Avatar>
           </Tooltip>
 
@@ -78,10 +78,6 @@ function Profile() {
 
         </Dialog>
       </>
-    );
-  } else {
-    return (
-      <></>
     );
   };
 }

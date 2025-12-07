@@ -4,6 +4,7 @@ import {
   Alert,
   Box,
   Button,
+  DialogContent,
 } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -19,7 +20,8 @@ function TreeUpdate(props) {
   const { id_token, tree, setTree } = userStore();
   const [isLoading, setLoading] = useState(false);
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [postModalOpen, setPostModalOpen] = useState(false);
+  const [delModalOpen, setDelModalOpen] = useState(false);
   const [isInvalidId, setIsInvalidId] = useState(false);
   const [parentDirId, setParentDirId] = useState("");
   const [newContentName, setNewContentName] = useState("");
@@ -28,15 +30,20 @@ function TreeUpdate(props) {
     setParentDirId(props.currentDirId);
   }, [props.currentDirId]);
 
-  const onClickNewContentModal = () => {
+  const onClickPostModal = () => {
     setNewContentName("");
-    setModalOpen(true);
+    setPostModalOpen(true);
   };
 
-  const modalClose = () => {
+  const onClickDelModal = () => {
+    setDelModalOpen(true);
+  };
+
+  const closeModal = () => {
     setNewContentName("");
     setIsInvalidId(false);
-    setModalOpen(false);
+    setPostModalOpen(false);
+    setDelModalOpen(false);
   };
 
   const clickCreateNewContent = async () => {
@@ -49,10 +56,24 @@ function TreeUpdate(props) {
     const insert_node = { parent_id: parentDirId, label: newContentName };
     const new_tree = utils.update_tree(tree, insert_node);
 
-    console.log('Updated tree:', new_tree);
-
     setLoading(true);
-    setModalOpen(false);
+    setPostModalOpen(false);
+
+    const res = await utils.requests(
+      `${utils.API_HOST}/${utils.API_VER}/trees`,
+      "PUT",
+      { authorization: `Bearer ${id_token}` },
+      { tree: new_tree }
+    );
+    setTree(res.body.tree);
+    setLoading(false);
+  };
+
+  const clickDeleteContent = async () => {
+    setLoading(true);
+    setDelModalOpen(false);
+
+    var new_tree = utils.delete_tree_node(tree, parentDirId);
 
     const res = await utils.requests(
       `${utils.API_HOST}/${utils.API_VER}/trees`,
@@ -72,37 +93,37 @@ function TreeUpdate(props) {
         m: 3
       }}>
 
-        <Button onClick={() => onClickNewContentModal()} disabled={props.currentDirId === ""}>
+        <Button onClick={onClickPostModal} disabled={props.currentDirId === ""}>
           <NoteAddOutlinedIcon />
         </Button>
 
-        <Button disabled={props.currentDirId === "" || props.currentDirId === '/Folder'} sx={{ color: "red" }}>
+        <Button onClick={onClickDelModal} disabled={props.currentDirId === "" || props.currentDirId === '/Folder'} sx={{ color: "red" }}>
           <DeleteOutlineOutlinedIcon />
         </Button>
 
       </Box>
 
-      <Dialog onClose={modalClose} open={modalOpen}>
+      <Dialog onClose={closeModal} open={postModalOpen}>
         <DialogTitle>
-          Create New Content
+          新しいコンテンツを作成
         </DialogTitle>
 
         <Box
           component="form"
-          sx={{ '& > :not(style)': { m: 3, width: '25ch' } }}
+          sx={{ '& > :not(style)': { m: 2, width: '25ch' } }}
           noValidate
           autoComplete="off"
         >
           <TextField
             id="outlined-basic"
-            label="Parent Folder Name"
+            label="フォルダ名"
             variant="outlined"
             disabled
             value={`${parentDirId}/`}
           />
           <TextField
             id="outlined-basic"
-            label="New Content Name"
+            label="新しいコンテンツ名"
             variant="outlined"
             value={newContentName}
             onChange={(e) => setNewContentName(e.target.value)}
@@ -111,12 +132,28 @@ function TreeUpdate(props) {
 
         {isInvalidId &&
           <Alert severity="error" sx={{ mx: 3 }}>
-            A content name must not be empty and must not have the same name already exists in this folder.
+            空欄または既存のコンテンツ名と重複しています。
           </Alert>
         }
 
         <DialogActions>
           <Button autoFocus onClick={clickCreateNewContent}>OK</Button>
+        </DialogActions>
+
+      </Dialog>
+
+      <Dialog onClose={closeModal} open={delModalOpen}>
+        <DialogTitle>
+          コンテンツを削除
+        </DialogTitle>
+
+        <DialogContent>
+          そのコンテンツとすべての子コンテンツが削除されます。
+          削除しますか？
+        </DialogContent>
+
+        <DialogActions>
+          <Button autoFocus onClick={clickDeleteContent} sx={{color: "red"}}>OK</Button>
         </DialogActions>
 
       </Dialog>

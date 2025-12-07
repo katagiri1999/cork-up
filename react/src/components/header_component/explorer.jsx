@@ -49,11 +49,6 @@ function Explorer() {
         </Box>
       </>
     );
-
-  } else {
-    return (
-      <></>
-    );
   }
 };
 
