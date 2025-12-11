@@ -5,11 +5,15 @@ import "easymde/dist/easymde.min.css";
 export const MarkdownEditor = () => {
   const [markdownValue, setMarkdownValue] = useState("");
 
-  const onChange = (value) => {
-    setMarkdownValue(value);
-  };
-
-  return <SimpleMde value={markdownValue} onChange={onChange} />;
+  return (
+    <>
+      <SimpleMde
+        id="simple-mde"
+        value={markdownValue}
+        onChange={(value) => setMarkdownValue(value)}
+      />
+    </>
+  );
 };
 
 export default MarkdownEditor;

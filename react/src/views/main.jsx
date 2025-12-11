@@ -5,6 +5,7 @@ import Header from "../components/header.jsx";
 import Loading from "../components/loading.jsx";
 import userStore from "../store/user_store.jsx";
 import utils from "../utils/utils.js";
+import MarkdownEditor from "../components/markdowneditor.jsx";
 
 function Main() {
   const { id_token, setTree } = userStore();
@@ -36,7 +37,9 @@ function Main() {
       <Header />
       <Loading loading={isLoading} />
 
-      <Container maxWidth="xs" sx={{ marginTop: 10 }}>
+      <Container>
+
+        <MarkdownEditor></MarkdownEditor>
 
       </Container>
     </>
