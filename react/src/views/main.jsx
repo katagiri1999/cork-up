@@ -1,7 +1,4 @@
-import {
-  Box,
-  Container,
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useEffect, useState } from 'react';
 
 import Header from "../components/header.jsx";

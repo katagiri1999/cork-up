@@ -1,11 +1,6 @@
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import {
-  Alert,
-  Box,
-  Button,
-  DialogContent,
-} from "@mui/material";
+import { Alert, Box, Button, DialogContent } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -157,7 +152,7 @@ function TreeUpdate(props) {
         </DialogContent>
 
         <DialogActions>
-          <Button autoFocus onClick={clickDeleteContent} sx={{color: "red"}}>OK</Button>
+          <Button autoFocus onClick={clickDeleteContent} sx={{ color: "red" }}>OK</Button>
         </DialogActions>
 
       </Dialog>

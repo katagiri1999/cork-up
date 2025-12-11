@@ -1,8 +1,4 @@
-import {
-  Box,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 import Header from "../components/header.jsx";
 
