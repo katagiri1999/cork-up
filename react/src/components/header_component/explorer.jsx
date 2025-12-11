@@ -7,12 +7,14 @@ import {
 } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import userStore from "../../store/user_store";
 
 import TreeUpdate from './tree_update';
 
 function Explorer() {
+  const navigate = useNavigate();
   const { id_token, tree, setTree } = userStore();
   const [currentDirId, setCurrentDirId] = useState("");
 
@@ -22,6 +24,8 @@ function Explorer() {
 
   const handleItemClick = (_, itemId) => {
     setCurrentDirId(itemId);
+
+    navigate(`/main?id=${itemId}`);
   };
 
   if (id_token && tree) {

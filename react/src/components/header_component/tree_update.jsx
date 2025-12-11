@@ -59,12 +59,14 @@ function TreeUpdate(props) {
     setLoading(true);
     setPostModalOpen(false);
 
-    const res = await utils.requests(
+    var res = utils.requests(
       `${utils.API_HOST}/${utils.API_VER}/trees`,
       "PUT",
       { authorization: `Bearer ${id_token}` },
       { tree: new_tree }
     );
+    res = await res;
+
     setTree(res.body.tree);
     setLoading(false);
   };
@@ -75,12 +77,14 @@ function TreeUpdate(props) {
 
     var new_tree = utils.delete_tree_node(tree, parentDirId);
 
-    const res = await utils.requests(
+    var res = utils.requests(
       `${utils.API_HOST}/${utils.API_VER}/trees`,
       "PUT",
       { authorization: `Bearer ${id_token}` },
       { tree: new_tree }
     );
+    res = await res;
+
     setTree(res.body.tree);
     setLoading(false);
   };

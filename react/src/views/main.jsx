@@ -16,12 +16,14 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      var res = await utils.requests(
+      var res = utils.requests(
         `${utils.API_HOST}/${utils.API_VER}/trees`,
         "GET",
         { Authorization: `Bearer ${id_token}` },
         {}
       );
+      res = await res;
+
       setTree(res.body.tree);
       setLoading(false);
     };
