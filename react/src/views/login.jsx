@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/header.jsx";
 import Loading from '../components/loading.jsx';
 import userStore from '../store/user_store.jsx';
-import * as utils from "../utils/utils.js";
+import utils from "../utils/utils.js";
 
 function Login() {
   const navigate = useNavigate();

@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import userStore from '../../store/user_store.jsx';
-import * as utils from "../../utils/utils.js";
+import utils from "../../utils/utils.js";
 import Loading from '../loading.jsx';
 
 function Profile() {

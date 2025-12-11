@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 
 import userStore from '../../store/user_store.jsx';
-import * as utils from '../../utils/utils.js';
+import utils from "../../utils/utils.js";
 import Loading from '../loading.jsx';
 
 function TreeUpdate(props) {

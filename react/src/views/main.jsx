@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import Header from "../components/header.jsx";
 import Loading from "../components/loading.jsx";
 import userStore from "../store/user_store.jsx";
-import * as utils from "../utils/utils.js";
+import utils from "../utils/utils.js";
 
 function Main() {
   const { id_token, setTree } = userStore();

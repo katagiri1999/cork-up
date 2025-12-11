@@ -1,4 +1,11 @@
-export async function requests(url, method, headers = {}, params = {}) {
+export default {
+    requests,
+    update_tree,
+    delete_tree_node,
+    is_valid_new_node,
+};
+
+async function requests(url, method, headers = {}, params = {}) {
     if (!headers["Content-Type"]) {
         headers["Content-Type"] = "application/json";
     }
@@ -34,7 +41,7 @@ export async function requests(url, method, headers = {}, params = {}) {
     return res;
 };
 
-export function update_tree(tree, insert_node) {
+function update_tree(tree, insert_node) {
     const { parent_id, label } = insert_node;
 
     // 新しいノードは children を持たない → ファイル
@@ -66,7 +73,7 @@ export function update_tree(tree, insert_node) {
     return tree;
 }
 
-export function delete_tree_node(tree, target_id) {
+function delete_tree_node(tree, target_id) {
     function recursive_delete(node, parent) {
         if (node.id === target_id) {
             if (parent && parent.children) {
@@ -86,7 +93,7 @@ export function delete_tree_node(tree, target_id) {
     return tree;
 }
 
-export function is_valid_new_node(tree, parent_id, label) {
+function is_valid_new_node(tree, parent_id, label) {
     // check if id null or empty
     if (!label) {
         return false;
