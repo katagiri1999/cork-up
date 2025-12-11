@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField, Typography, Alert } from "@mui/material";
+import { Button, Container, TextField, Typography, Alert } from "@mui/material";
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
@@ -57,43 +57,38 @@ function Login() {
       <Header />
       <Loading loading={isLoading} />
 
-      <Container maxWidth="xs">
-        <Box
-          sx={{ marginTop: 10 }}
+      <Container maxWidth="xs" sx={{ marginTop: 10 }}>
+
+        <Typography variant="h4" align="center">
+          Login
+        </Typography>
+
+        <TextField
+          value={email}
+          onChange={handleEmailChange}
+          margin="normal"
+          fullWidth
+          label="メールアドレス"
+        />
+
+        <TextField
+          value={password}
+          onChange={handlePwChange}
+          margin="normal"
+          fullWidth
+          label="パスワード"
+          type="password"
+          autoComplete="current-password"
+        />
+
+        <Button
+          onClick={onClickSignin}
+          fullWidth
+          variant="contained"
+          sx={{ marginTop: "5%", marginBottom: "2%" }}
         >
-          <Typography variant="h4" align="center">
-            Login
-          </Typography>
-
-          <Box component="form" noValidate sx={{ marginTop: "1%" }}>
-            <TextField
-              value={email}
-              onChange={handleEmailChange}
-              margin="normal"
-              fullWidth
-              label="メールアドレス"
-            />
-
-            <TextField
-              value={password}
-              onChange={handlePwChange}
-              margin="normal"
-              fullWidth
-              label="パスワード"
-              type="password"
-              autoComplete="current-password"
-            />
-
-            <Button
-              onClick={onClickSignin}
-              fullWidth
-              variant="contained"
-              sx={{ marginTop: "5%", marginBottom: "2%" }}
-            >
-              ログイン
-            </Button>
-          </Box>
-        </Box>
+          ログイン
+        </Button>
 
         {isLoginError &&
           <Alert severity="error">IDまたはパスワードが正しくありません</Alert>

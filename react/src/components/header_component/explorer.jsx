@@ -6,9 +6,9 @@ import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import userStore from "../../store/user_store";
+import userStore from "../../store/user_store.jsx";
 
-import TreeUpdate from './tree_update';
+import TreeUpdate from './tree_update.jsx';
 
 function Explorer() {
   const navigate = useNavigate();
@@ -32,11 +32,7 @@ function Explorer() {
           Explorer
         </Typography>
 
-        <Box
-          sx={{
-            m: 5,
-            textAlign: 'left',
-          }}>
+        <Box>
           <RichTreeView
             items={[tree]}
             onItemClick={handleItemClick}

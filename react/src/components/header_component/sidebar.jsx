@@ -1,13 +1,13 @@
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { useState } from 'react';
 
-import Explorer from './explorer';
-import Links from './links';
+import Explorer from './explorer.jsx';
+import Links from './links.jsx';
 
 function Sidebar() {
   const [drawewrOpen, setDrawerOpen] = useState(false);
@@ -45,13 +45,13 @@ function Sidebar() {
         }}
       >
 
-        <Box sx={{ textAlign: 'center' }}>
+        <Container sx={{ textAlign: 'left' }}>
 
           <Explorer />
           <Divider />
           <Links />
 
-        </Box>
+        </Container>
       </Drawer >
     </>
   );

@@ -1,6 +1,6 @@
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import { Alert, Box, Button, DialogContent } from "@mui/material";
+import { Alert, Container, Button, DialogContent } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -88,8 +88,9 @@ function TreeUpdate(props) {
     <>
       <Loading loading={isLoading} />
 
-      <Box sx={{
-        m: 3
+      <Container sx={{
+        m: 3,
+        display: "flex"
       }}>
 
         <Button onClick={onClickPostModal} disabled={props.currentDirId === ""}>
@@ -100,14 +101,14 @@ function TreeUpdate(props) {
           <DeleteOutlineOutlinedIcon />
         </Button>
 
-      </Box>
+      </Container>
 
       <Dialog onClose={closeModal} open={postModalOpen}>
         <DialogTitle>
           新しいコンテンツを作成
         </DialogTitle>
 
-        <Box
+        <Container
           component="form"
           sx={{ '& > :not(style)': { m: 2, width: '25ch' } }}
           noValidate
@@ -127,7 +128,7 @@ function TreeUpdate(props) {
             value={newContentName}
             onChange={(e) => setNewContentName(e.target.value)}
           />
-        </Box>
+        </Container>
 
         {isInvalidId &&
           <Alert severity="error" sx={{ mx: 3 }}>

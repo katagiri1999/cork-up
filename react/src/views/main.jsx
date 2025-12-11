@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useEffect, useState } from 'react';
 
 import Header from "../components/header.jsx";
@@ -36,12 +36,8 @@ function Main() {
       <Header />
       <Loading loading={isLoading} />
 
-      <Container maxWidth="xs">
-        <Box
-          sx={{ marginTop: 5 }}
-        >
+      <Container maxWidth="xs" sx={{ marginTop: 10 }}>
 
-        </Box>
       </Container>
     </>
   );

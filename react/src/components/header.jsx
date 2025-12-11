@@ -1,5 +1,4 @@
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
@@ -9,23 +8,21 @@ import Sidebar from './header_component/sidebar.jsx';
 function Header() {
 
   return (
-    <Box>
-      <AppBar position="static" sx={{ mb: 7 }}>
-        <Toolbar style={{ display: "flex" }}>
+    <AppBar position="static" sx={{ mb: 7 }}>
+      <Toolbar style={{ display: "flex" }}>
 
-          <Sidebar />
+        <Sidebar />
 
-          <Typography
-            variant="h6"
-          >
-            Cork-Up
-          </Typography>
+        <Typography
+          variant="h6"
+        >
+          Cork-Up
+        </Typography>
 
-          <Profile />
+        <Profile />
 
-        </Toolbar>
-      </AppBar>
-    </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

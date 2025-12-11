@@ -8,13 +8,12 @@ function Links() {
 
   return (
     <>
-      <List sx={{ mt: 2, }}>
+      <List sx={{ mt: 3 }}>
         <ListItem>
           <Button
             component={Link}
             to="/information"
             target="_blank"
-            sx={{ width: "100%" }}
           >
             Information
             <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
@@ -25,7 +24,6 @@ function Links() {
             component={Link}
             to="https://github.com/katagiri1999/cork-up"
             target="_blank"
-            sx={{ width: "100%" }}
           >
             Github
             <LaunchIcon sx={{ ml: 1, fontSize: 15 }} />
