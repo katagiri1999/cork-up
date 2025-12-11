@@ -1,8 +1,11 @@
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
+import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -15,21 +18,27 @@ function Profile() {
   const navigate = useNavigate();
 
   const { email, id_token } = userStore();
-  const [isOpenProfile, setOpenProfile] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpenLogoutDialog, setOpenLogoutDialog] = useState(false);
 
   var initialName = email.charAt(0).toUpperCase();
 
-  const handleClickOpen = () => {
-    setOpenProfile(true);
+  const handleMenuOpen = () => {
+    setIsMenuOpen(true);
   };
 
-  const handleClose = () => {
-    setOpenProfile(false);
+  const clickInformation = (path) => {
+    window.open(path);
+  };
+
+  const openLogout = () => {
+    setOpenLogoutDialog(true);
+    setIsMenuOpen(false);
   };
 
   const logOutClick = async () => {
-    setOpenProfile(false);
+    setOpenLogoutDialog(false);
 
     setLoading(true);
     await utils.requests(
@@ -51,7 +60,7 @@ function Profile() {
 
         <IconButton
           color="inherit"
-          onClick={handleClickOpen}
+          onClick={handleMenuOpen}
           sx={{
             position: "absolute",
             right: 10,
@@ -63,19 +72,41 @@ function Profile() {
 
         </IconButton>
 
-        <Dialog
-          open={isOpenProfile}
-          onClose={handleClose}
+        <Menu
+          id="basic-menu"
+          anchorEl={isMenuOpen}
+          open={Boolean(isMenuOpen)}
+          onClose={() => setIsMenuOpen(false)}
+          slotProps={{
+            list: {
+              'aria-labelledby': 'basic-button',
+            },
+          }}
+          anchorOrigin={{
+            vertical: "bottom", horizontal: "right"
+          }}
         >
+          <MenuItem onClick={() => clickInformation("/information")}>
+            Information
+          </MenuItem>
+          <MenuItem onClick={() => clickInformation("https://github.com/katagiri1999/cork-up")}>
+            Github
+          </MenuItem>
+          <MenuItem onClick={openLogout}>
+            ログアウト
+          </MenuItem>
+        </Menu >
 
+        <Dialog
+          open={isOpenLogoutDialog}
+          onClose={() => setOpenLogoutDialog(false)}
+        >
           <DialogTitle>
             <b>{email}</b> からログアウトしますか？
           </DialogTitle>
-
           <DialogActions>
             <Button onClick={logOutClick}>はい</Button>
           </DialogActions>
-
         </Dialog>
       </>
     );
