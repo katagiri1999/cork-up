@@ -13,14 +13,14 @@ import TreeUpdate from './tree_update.jsx';
 function Explorer() {
   const navigate = useNavigate();
   const { id_token, tree, setTree } = userStore();
-  const [currentDirId, setCurrentDirId] = useState("");
+  const [currentNodeId, setCurrentNodeId] = useState("");
 
   useEffect(() => {
     setTree(tree);
   }, [tree]);
 
   const handleItemClick = (_, itemId) => {
-    setCurrentDirId(itemId);
+    setCurrentNodeId(itemId);
 
     navigate(`/main?id=${itemId}`);
   };
@@ -41,8 +41,9 @@ function Explorer() {
               collapseIcon: FolderOpenIcon,
               endIcon: ArticleOutlinedIcon,
             }}
+            defaultExpandedItems={['/Folder']}
           />
-          <TreeUpdate currentDirId={currentDirId} />
+          <TreeUpdate currentNodeId={currentNodeId} />
         </Box>
       </>
     );

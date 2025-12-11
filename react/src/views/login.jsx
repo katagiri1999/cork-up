@@ -45,7 +45,7 @@ function Login() {
       setLoginError(false);
       setPassword("");
       setIdToken(res.body.id_token);
-      navigate("/main");
+      navigate("/main?id=/Folder");
     };
 
     setLoading(false);

@@ -18,12 +18,12 @@ function TreeUpdate(props) {
   const [postModalOpen, setPostModalOpen] = useState(false);
   const [delModalOpen, setDelModalOpen] = useState(false);
   const [isInvalidId, setIsInvalidId] = useState(false);
-  const [parentDirId, setParentDirId] = useState("");
+  const [currentNodeId, setCurrentNodeId] = useState("");
   const [newContentName, setNewContentName] = useState("");
 
   useEffect(() => {
-    setParentDirId(props.currentDirId);
-  }, [props.currentDirId]);
+    setCurrentNodeId(props.currentNodeId);
+  }, [props.currentNodeId]);
 
   const onClickPostModal = () => {
     setNewContentName("");
@@ -42,17 +42,17 @@ function TreeUpdate(props) {
   };
 
   const clickCreateNewContent = async () => {
-    var isValid = utils.is_valid_new_node(tree, parentDirId, newContentName);
+    var isValid = utils.is_valid_new_node(tree, currentNodeId, newContentName);
     if (!isValid) {
       setIsInvalidId(true);
       return;
     }
 
-    const insert_node = { parent_id: parentDirId, label: newContentName };
+    const insert_node = { parent_id: currentNodeId, label: newContentName };
     const new_tree = utils.update_tree(tree, insert_node);
 
     setLoading(true);
-    setPostModalOpen(false);
+    closeModal();
 
     var res = utils.requests(
       `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/trees`,
@@ -68,9 +68,9 @@ function TreeUpdate(props) {
 
   const clickDeleteContent = async () => {
     setLoading(true);
-    setDelModalOpen(false);
+    closeModal();
 
-    var new_tree = utils.delete_tree_node(tree, parentDirId);
+    var new_tree = utils.delete_tree_node(tree, currentNodeId);
 
     var res = utils.requests(
       `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/trees`,
@@ -93,11 +93,11 @@ function TreeUpdate(props) {
         display: "flex"
       }}>
 
-        <Button onClick={onClickPostModal} disabled={props.currentDirId === ""}>
+        <Button onClick={onClickPostModal} disabled={props.currentNodeId === ""}>
           <NoteAddOutlinedIcon />
         </Button>
 
-        <Button onClick={onClickDelModal} disabled={props.currentDirId === "" || props.currentDirId === '/Folder'} sx={{ color: "red" }}>
+        <Button onClick={onClickDelModal} disabled={props.currentNodeId === "" || props.currentNodeId === '/Folder'} sx={{ color: "red" }}>
           <DeleteOutlineOutlinedIcon />
         </Button>
 
@@ -119,7 +119,7 @@ function TreeUpdate(props) {
             label="フォルダ名"
             variant="outlined"
             disabled
-            value={`${parentDirId}/`}
+            value={`${currentNodeId}/`}
           />
           <TextField
             id="outlined-basic"
