@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/header.jsx";
 import Loading from '../components/loading.jsx';
 import userStore from '../store/user_store.jsx';
-import * as utils from "../utils.js";
+import * as utils from "../utils/utils.js";
 
 function Login() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function Login() {
   const onClickSignin = async () => {
     setLoading(true);
     var res = await utils.requests(
-      `${utils.API_HOST}/${utils.API_VER}/login`,
+      `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/login`,
       "POST",
       {},
       {

@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 
 import userStore from '../../store/user_store.jsx';
-import * as utils from '../../utils.js';
+import * as utils from '../../utils/utils.js';
 import Loading from '../loading.jsx';
 
 function TreeUpdate(props) {
@@ -60,7 +60,7 @@ function TreeUpdate(props) {
     setPostModalOpen(false);
 
     var res = utils.requests(
-      `${utils.API_HOST}/${utils.API_VER}/trees`,
+      `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/trees`,
       "PUT",
       { authorization: `Bearer ${id_token}` },
       { tree: new_tree }
@@ -78,7 +78,7 @@ function TreeUpdate(props) {
     var new_tree = utils.delete_tree_node(tree, parentDirId);
 
     var res = utils.requests(
-      `${utils.API_HOST}/${utils.API_VER}/trees`,
+      `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/trees`,
       "PUT",
       { authorization: `Bearer ${id_token}` },
       { tree: new_tree }

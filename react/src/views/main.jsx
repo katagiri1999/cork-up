@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import Header from "../components/header.jsx";
 import Loading from "../components/loading.jsx";
 import userStore from "../store/user_store.jsx";
-import * as utils from "../utils.js";
+import * as utils from "../utils/utils.js";
 
 function Main() {
   const { id_token, setTree } = userStore();
@@ -17,7 +17,7 @@ function Main() {
     const fetchData = async () => {
       setLoading(true);
       var res = utils.requests(
-        `${utils.API_HOST}/${utils.API_VER}/trees`,
+        `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/trees`,
         "GET",
         { Authorization: `Bearer ${id_token}` },
         {}

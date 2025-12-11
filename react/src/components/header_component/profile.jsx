@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import userStore from '../../store/user_store.jsx';
-import * as utils from "../../utils.js";
+import * as utils from "../../utils/utils.js";
 import Loading from '../loading.jsx';
 
 function Profile() {
@@ -33,7 +33,7 @@ function Profile() {
 
     setLoading(true);
     await utils.requests(
-      `${utils.API_HOST}/${utils.API_VER}/logout`,
+      `${import.meta.env.VITE_API_HOST}/${import.meta.env.VITE_API_VER}/logout`,
       "POST",
       { "Authorization": `Bearer ${id_token}` },
       {}
