@@ -35,6 +35,9 @@ OSSアプリケーションとして公開しておりますので、気軽に�
 | AWS DynamoDB     | DB                         |
 | お名前.com        | DNS                        |
 
+<br>
+
+構成図
 ![drowio](cork-up.drawio.svg)
 
 ## テーブル設計
