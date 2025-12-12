@@ -10,9 +10,6 @@ function EditerHeader() {
         <IconButton sx={{ ml: 1 }}>
           <SaveOutlinedIcon />
         </IconButton>
-        <IconButton sx={{ ml: 1 }}>
-          <SettingsOutlinedIcon />
-        </IconButton>
       </Box>
     </>
   );
