@@ -24,10 +24,7 @@
 
 /* プレビュー全体 */
 .editor-preview {
-  background-color: #fefefe;
-  color: #333;
   padding: 1.5rem;
-  font-family: "Segoe UI", sans-serif;
   line-height: 1.6;
 
   /* H1 */
