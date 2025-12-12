@@ -26,7 +26,7 @@ function Main() {
 
       const nodes = [
         ...parents.map((id) => utils.get_node(tree, id)).filter(Boolean),
-        utils.get_node(tree, url_id) // ← 現在のノードを追加！
+        utils.get_node(tree, url_id)
       ].filter(Boolean);
 
       setParentNodes(nodes);
