@@ -1,4 +1,11 @@
-/* プレビュー全体の背景と文字色 */
+/* 編集画面 */
+.CodeMirror-code * {
+  font-size: 14px !important;
+  font-weight: normal !important;
+  color: #2d2d2d !important;
+}
+
+/* プレビュー全体 */
 .editor-preview {
   background-color: #fefefe;
   color: #333;
@@ -69,7 +76,7 @@
   font-weight: bold;
 }
 
-/* 引用（blockquote）のスタイル */
+/* 引用（blockquote） */
 .editor-preview blockquote,
 .editor-preview-active blockquote {
   border-left: 4px solid #949899;
