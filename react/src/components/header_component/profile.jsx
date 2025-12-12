@@ -19,22 +19,27 @@ function Profile() {
 
   const { email, id_token } = userStore();
   const [isLoading, setLoading] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(null);
   const [isOpenLogoutDialog, setOpenLogoutDialog] = useState(false);
 
-  var initialName = email.charAt(0).toUpperCase();
+  const initialName = email.charAt(0).toUpperCase();
 
-  const handleMenuOpen = () => {
-    setIsMenuOpen(true);
+  const handleMenuOpen = (event) => {
+    setIsMenuOpen(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setIsMenuOpen(null);
   };
 
   const clickInformation = (path) => {
     window.open(path);
+    handleMenuClose();
   };
 
   const openLogout = () => {
     setOpenLogoutDialog(true);
-    setIsMenuOpen(false);
+    handleMenuClose();
   };
 
   const logOutClick = async () => {
@@ -61,29 +66,23 @@ function Profile() {
         <IconButton
           color="inherit"
           onClick={handleMenuOpen}
-          sx={{
-            position: "absolute",
-            right: 10,
-          }}>
-
+          sx={{ position: "absolute", right: 10 }}
+        >
           <Tooltip title={`${email} でログイン中`}>
             <Avatar>{initialName}</Avatar>
           </Tooltip>
-
         </IconButton>
 
         <Menu
-          id="basic-menu"
           anchorEl={isMenuOpen}
           open={Boolean(isMenuOpen)}
           onClose={() => setIsMenuOpen(false)}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
           slotProps={{
             list: {
               'aria-labelledby': 'basic-button',
             },
-          }}
-          anchorOrigin={{
-            vertical: "bottom", horizontal: "right"
           }}
         >
           <MenuItem onClick={() => clickInformation("/information")}>
@@ -95,7 +94,7 @@ function Profile() {
           <MenuItem onClick={openLogout}>
             ログアウト
           </MenuItem>
-        </Menu >
+        </Menu>
 
         <Dialog
           open={isOpenLogoutDialog}

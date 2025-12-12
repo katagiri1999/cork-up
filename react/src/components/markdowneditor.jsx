@@ -18,6 +18,7 @@ export const MarkdownEditor = () => {
       value={markdownValue}
       onChange={setMarkdownValue}
       options={options}
+      // 編集画面/Preview画面に行を表示したい
     />
   );
 };
