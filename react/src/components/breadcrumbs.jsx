@@ -12,15 +12,14 @@ function Breadcrumb() {
   const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const url_id = params.get("id");
+    const url_node_id = utils.get_url_node_id();
 
-    if (tree && url_id) {
-      const parents = utils.get_parent_ids(url_id) || [];
+    if (tree && url_node_id) {
+      const parents = utils.get_parent_node_ids(url_node_id) || [];
 
       const nodes = [
         ...parents.map((id) => utils.get_node(tree, id)).filter(Boolean),
-        utils.get_node(tree, url_id)
+        utils.get_node(tree, url_node_id)
       ].filter(Boolean);
 
       setParentNodes(nodes);
@@ -34,7 +33,7 @@ function Breadcrumb() {
           key={node.id}
           underline="hover"
           color={index === parentNodes.length - 1 ? "text.primary" : "inherit"}
-          href={`/main?id=${node.id}`}
+          href={`/main?node_id=${node.id}`}
           aria-current={index === parentNodes.length - 1 ? "page" : undefined}
         >
           {node.label || node.id}

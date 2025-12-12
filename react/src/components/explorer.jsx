@@ -16,26 +16,26 @@ function Explorer() {
   const navigate = useNavigate();
   const { id_token, tree, setTree } = userStore();
 
-  const url_id = utils.get_url_id();
+  const url_node_id = utils.get_url_node_id();
 
-  const [currentNodeId, setCurrentNodeId] = useState(url_id || "");
+  const [currentNodeId, setCurrentNodeId] = useState(url_node_id || "");
   const [expandedItems, setExpandedItems] = useState(["/Folder"]);
   const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
-    setCurrentNodeId(url_id || "");
-  }, [url_id]);
+    setCurrentNodeId(url_node_id || "");
+  }, [url_node_id]);
 
   useEffect(() => {
-    if (!hasInitialized && tree && url_id) {
-      const parents = utils.get_parent_ids(url_id);
+    if (!hasInitialized && tree && url_node_id) {
+      const parents = utils.get_parent_node_ids(url_node_id);
       if (parents) {
         var latest_expanded_items = [...new Set([...expandedItems, ...parents])];
         setExpandedItems(latest_expanded_items);
       }
       setHasInitialized(true);
     }
-  }, [tree, url_id, hasInitialized]);
+  }, [tree, url_node_id, hasInitialized]);
 
   useEffect(() => {
     setTree(tree);
@@ -43,7 +43,7 @@ function Explorer() {
 
   const handleItemClick = (_, itemId) => {
     setCurrentNodeId(itemId);
-    navigate(`/main?id=${itemId}`);
+    navigate(`/main?node_id=${itemId}`);
   };
 
   if (id_token && tree) {

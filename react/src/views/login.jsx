@@ -49,7 +49,7 @@ function Login() {
       setLoginError(false);
       setPassword("");
       setIdToken(res.body.id_token);
-      navigate("/main?id=/Folder");
+      navigate("/main?node_id=/Folder");
     };
 
     setLoading(false);

@@ -78,7 +78,7 @@ function TreeUpdate(props) {
     setLoading(true);
     closeModal();
 
-    var parents = utils.get_parent_ids(currentNodeId);
+    var parents = utils.get_parent_node_ids(currentNodeId);
     const next_current_id = parents[parents.length - 1];
     var new_tree = utils.delete_tree_node(tree, currentNodeId);
 
@@ -92,7 +92,7 @@ function TreeUpdate(props) {
 
     setTree(res.body.tree);
     setLoading(false);
-    navigate(`/main?id=${next_current_id}`);
+    navigate(`/main?node_id=${next_current_id}`);
   };
 
   return (

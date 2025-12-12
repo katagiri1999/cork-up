@@ -1,9 +1,9 @@
 export default {
     requests,
-    get_url_id,
-    get_parent_id_from_id,
+    get_url_node_id,
+    get_parent_id_from_id: get_parent_node_id,
     get_node,
-    get_parent_ids,
+    get_parent_node_ids,
     update_tree,
     delete_tree_node,
     is_valid_new_node,
@@ -46,21 +46,21 @@ async function requests(url, method, headers = {}, params = {}) {
     return res;
 };
 
-function get_url_id() {
+function get_url_node_id() {
     const params = new URLSearchParams(location.search);
-    const url_id = params.get("id");
+    const url_id = params.get("node_id");
     return url_id;
 };
 
-function get_parent_id_from_id(id) {
-    const parts = id.split("/").filter(Boolean);
+function get_parent_node_id(node_id) {
+    const parts = node_id.split("/").filter(Boolean);
     const parentParts = parts.slice(0, -1);
     const parent_id = "/" + parentParts.join("/");
     return parent_id;
 };
 
-function get_node(tree, target_id) {
-    const parts = target_id
+function get_node(tree, node_id) {
+    const parts = node_id
         .split("/")
         .filter(part => part && part !== "Folder");
 
@@ -77,10 +77,10 @@ function get_node(tree, target_id) {
     return current;
 };
 
-function get_parent_ids(target_id) {
-    if (!target_id) return [];
+function get_parent_node_ids(node_id) {
+    if (!node_id) return [];
 
-    const parts = target_id.split("/").filter(Boolean); // 空文字を除外
+    const parts = node_id.split("/").filter(Boolean); // 空文字を除外
     if (parts.length <= 1) return [];
 
     const parentIds = [];
@@ -92,7 +92,7 @@ function get_parent_ids(target_id) {
 };
 
 function update_tree(tree, insert_node) {
-    const parent_id = get_parent_id_from_id(insert_node.id);
+    const parent_id = get_parent_node_id(insert_node.id);
     const parent = get_node(tree, parent_id);
     parent.children ??= [];
     parent.children.push(insert_node);
@@ -101,7 +101,7 @@ function update_tree(tree, insert_node) {
 };
 
 function delete_tree_node(tree, target_id) {
-    const parent_id = get_parent_id_from_id(target_id);
+    const parent_id = get_parent_node_id(target_id);
     const parent = get_node(tree, parent_id);
     parent.children = parent.children.filter(child => child.id !== target_id);
     return tree;
@@ -110,7 +110,7 @@ function delete_tree_node(tree, target_id) {
 function is_valid_new_node(tree, insert_node) {
     if (!insert_node.id || !insert_node.label) return false;
 
-    const parent_id = get_parent_id_from_id(insert_node.id);
+    const parent_id = get_parent_node_id(insert_node.id);
     const parent = get_node(tree, parent_id);
     if (!parent) return false;
 
