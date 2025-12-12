@@ -10,6 +10,7 @@ def _get_table(table_name: str) -> Table:
     table = dynamodb.Table(table_name)
     return table
 
+
 def get_user(email: str) -> dict:
     try:
         table = _get_table(config.USER_TABLE_NAME)
