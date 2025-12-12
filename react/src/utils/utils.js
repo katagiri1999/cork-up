@@ -104,16 +104,12 @@ function update_tree(tree, insert_node) {
 };
 
 function delete_tree_node(tree, target_id) {
-    function remove(node, parent) {
-        if (node.id === target_id) {
-            parent.children = parent.children.filter(child => child.id !== target_id);
-            return true;
-        }
+    const parts = target_id.split("/").filter(Boolean);
+    const parentParts = parts.slice(0, -1);
+    const parent_id = "/" + parentParts.join("/");
 
-        return (node.children ?? []).some(child => remove(child, node));
-    }
-
-    remove(tree, null);
+    const parent = get_node(tree, parent_id);
+    parent.children = parent.children.filter(child => child.id !== target_id);
     return tree;
 };
 
