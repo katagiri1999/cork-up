@@ -10,6 +10,7 @@ export const MarkdownEditor = () => {
     spellChecker: false,
     autofocus: true,
     placeholder: "",
+    lineNumbers: true,
   }), []);
 
   return (

@@ -1,3 +1,18 @@
+/* ツールバー */
+.editor-toolbar button {
+  border: none;
+  color: #333;
+  padding: 6px 10px;
+  margin: 2px;
+  border-radius: 6px;
+  transition: background-color 0.5s ease;
+
+  &.active {
+    background-color: #b0b0b0;
+    color: #474747;
+  }
+}
+
 /* 編集画面 */
 .CodeMirror-code * {
   font-size: 14px !important;
@@ -56,30 +71,29 @@
 }
 
 /* テーブル */
-.editor-preview table,
-.editor-preview-active table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.95rem;
-}
-.editor-preview th,
-.editor-preview td,
-.editor-preview-active th,
-.editor-preview-active td {
-  border: 1px solid #ccc;
-  padding: 0.6rem;
-  text-align: left;
-}
-.editor-preview th,
-.editor-preview-active th {
-  background-color: #f0f0f0;
-  font-weight: bold;
+.editor-preview {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
 }
 
 /* 引用（blockquote） */
-.editor-preview blockquote,
-.editor-preview-active blockquote {
+.editor-preview blockquote {
   border-left: 4px solid #949899;
   background-color: #ededed;
   padding: 1rem 1.5rem;
@@ -90,8 +104,7 @@
 }
 
 /* 水平線 */
-.editor-preview hr,
-.editor-preview-active hr {
+.editor-preview hr {
   border: none;
   border-top: 1px solid #ccc;
   margin: 2rem 0;
