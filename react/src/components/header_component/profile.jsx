@@ -76,7 +76,7 @@ function Profile() {
         <Menu
           anchorEl={isMenuOpen}
           open={Boolean(isMenuOpen)}
-          onClose={() => setIsMenuOpen(false)}
+          onClose={handleMenuClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
           slotProps={{
