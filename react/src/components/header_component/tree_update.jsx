@@ -6,12 +6,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import userStore from '../../store/user_store.jsx';
 import utils from "../../utils/utils.js";
 import Loading from '../loading.jsx';
 
 function TreeUpdate(props) {
+  const navigate = useNavigate();
+
   const { id_token, tree, setTree } = userStore();
   const [isLoading, setLoading] = useState(false);
 
@@ -70,6 +73,8 @@ function TreeUpdate(props) {
     setLoading(true);
     closeModal();
 
+    var parents = utils.find_parent_ids(tree, currentNodeId);
+    const next_current_id = parents[parents.length - 1];
     var new_tree = utils.delete_tree_node(tree, currentNodeId);
 
     var res = utils.requests(
@@ -82,6 +87,7 @@ function TreeUpdate(props) {
 
     setTree(res.body.tree);
     setLoading(false);
+    navigate(`/main?id=${next_current_id}`);
   };
 
   return (
