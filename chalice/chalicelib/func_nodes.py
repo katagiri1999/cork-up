@@ -28,12 +28,29 @@ def get(params) -> dict:
     try:
         email: str = params["email"]
         query_params: dict = params["query_params"]
+        node_id: str = query_params.get("node_id")
 
-        items = dynamodbs.get_nodes(email)
+        if node_id:
+            item = dynamodbs.get_node(email, node_id)
+            if not item:
+                raise Exception({
+                    "status_code": 404,
+                    "exception": "Not Found",
+                    "error_code": "func_nodes.not_found",
+                })
+            ret = {"node": item}
 
-        return {
-            "nodes": items
-        }
+        else:
+            items = dynamodbs.get_nodes(email)
+            if not items:
+                raise Exception({
+                    "status_code": 404,
+                    "exception": "Not Found",
+                    "error_code": "func_nodes.not_found",
+                })
+            ret = {"nodes": items}
+
+        return ret
 
     except Exception as e:
         raise e
@@ -45,4 +62,3 @@ def post(params) -> dict:
 
     except Exception as e:
         raise e
-

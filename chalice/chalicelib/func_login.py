@@ -15,7 +15,7 @@ def main(params: dict) -> dict:
             })
 
         user_info = dynamodbs.get_user(email=email)
-        if user_info.get("password") != pw:
+        if not user_info or user_info.get("password") != pw:
             raise Exception({
                 "status_code": 401,
                 "exception": "Unauthorized",

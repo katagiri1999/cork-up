@@ -14,7 +14,7 @@ def get_user(email: str) -> dict:
             Key={"email": email}
         )
 
-        return response.get("Item", {})
+        return response.get("Item")
 
     except Exception as e:
         raise e
@@ -29,7 +29,7 @@ def get_tree(email: str) -> dict:
             Key={"email": email}
         )
 
-        return response.get("Item", {})
+        return response.get("Item")
 
     except Exception as e:
         raise e
@@ -46,6 +46,24 @@ def update_tree(email: str, tree: dict) -> dict:
                 "tree": tree,
             }
         )
+
+    except Exception as e:
+        raise e
+
+
+def get_node(email: str, node_id) -> dict:
+    try:
+        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
+        table = dynamodb.Table(config.NODES_TABLE_NAME)
+
+        response = table.get_item(
+            Key={
+                "email": email,
+                "id": node_id,
+            }
+        )
+
+        return response.get("Item")
 
     except Exception as e:
         raise e
