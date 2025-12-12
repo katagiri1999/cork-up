@@ -58,5 +58,5 @@ OSSアプリケーションとして公開しておりますので、気軽に�
 | key              | type   | desctiption                 | option |
 | -                | -      | -                           | -      |
 | email            | str    | email                       | Partition Key |
-| id               | str    | node is                     | Sort Key      |
+| id               | str    | node id                     | Sort Key      |
 | text             | str    | text                        |        |

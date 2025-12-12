@@ -1,14 +1,18 @@
 import boto3
 from boto3.dynamodb.conditions import Key
-from mypy_boto3_dynamodb import DynamoDBServiceResource
+from mypy_boto3_dynamodb.service_resource import Table
 
 from chalicelib import config
 
 
+def _get_table(table_name: str) -> Table:
+    dynamodb = boto3.resource("dynamodb")
+    table = dynamodb.Table(table_name)
+    return table
+
 def get_user(email: str) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.USER_TABLE_NAME)
+        table = _get_table(config.USER_TABLE_NAME)
 
         response = table.get_item(
             Key={"email": email}
@@ -22,8 +26,7 @@ def get_user(email: str) -> dict:
 
 def get_tree(email: str) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.TREE_TABLE_NAME)
+        table = _get_table(config.TREE_TABLE_NAME)
 
         response = table.get_item(
             Key={"email": email}
@@ -37,8 +40,7 @@ def get_tree(email: str) -> dict:
 
 def update_tree(email: str, tree: dict) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.TREE_TABLE_NAME)
+        table = _get_table(config.TREE_TABLE_NAME)
 
         table.put_item(
             Item={
@@ -53,8 +55,7 @@ def update_tree(email: str, tree: dict) -> dict:
 
 def get_node(email: str, node_id) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.NODES_TABLE_NAME)
+        table = _get_table(config.NODES_TABLE_NAME)
 
         response = table.get_item(
             Key={
@@ -71,8 +72,7 @@ def get_node(email: str, node_id) -> dict:
 
 def get_nodes(email: str) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.NODES_TABLE_NAME)
+        table = _get_table(config.NODES_TABLE_NAME)
 
         response = table.query(
             KeyConditionExpression=Key("email").eq(email)
@@ -88,8 +88,7 @@ def get_nodes(email: str) -> dict:
 
 def post_node(email: str, node_id: str, text: str) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.NODES_TABLE_NAME)
+        table = _get_table(config.NODES_TABLE_NAME)
 
         table.put_item(
             Item={
@@ -105,8 +104,7 @@ def post_node(email: str, node_id: str, text: str) -> dict:
 
 def delete_node(email: str, node_id: str) -> dict:
     try:
-        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
-        table = dynamodb.Table(config.NODES_TABLE_NAME)
+        table = _get_table(config.NODES_TABLE_NAME)
 
         table.delete_item(
             Key={
