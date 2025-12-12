@@ -42,13 +42,13 @@ OSSアプリケーションとして公開しておりますので、気軽に�
 
 ## テーブル設計
 
-### user table
+### users table
 | key              | type  | desctiption                 | option |
 | -                | -     | -                           | -      |
 | email            | str   | email                       | Partition Key |
 | options          | object | options                    |        |
 
-### tree table
+### trees table
 | key              | type   | desctiption                 | option |
 | -                | -      | -                           | -      |
 | email            | str    | email                       | Partition Key |
