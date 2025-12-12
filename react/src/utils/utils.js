@@ -1,6 +1,7 @@
 export default {
     requests,
     get_url_id,
+    get_parent_id_from_id,
     get_node,
     get_parent_ids,
     update_tree,
