@@ -19,6 +19,7 @@
   font-weight: normal !important;
   color: #2d2d2d !important;
   text-decoration: none !important;
+  font-style: normal !important;
 }
 
 /* プレビュー全体 */
@@ -93,10 +94,9 @@
   blockquote {
     border-left: 4px solid #949899;
     background-color: #ededed;
-    padding: 1rem 1.5rem;
-    margin: 1.5rem 0;
+    padding: 0.2rem 1rem;
+    margin: 0.2rem 0;
     color: #555;
-    font-style: italic;
     border-radius: 4px;
   }
 
