@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 
 import userStore from '../store/user_store.jsx';
 
-import Profile from './header_component/profile.jsx';
-import Sidebar from './header_component/sidebar.jsx';
+import Profile from './profile.jsx';
+import Sidebar from './sidebar.jsx';
 
 function Header() {
   const { id_token } = userStore();

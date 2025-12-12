@@ -6,8 +6,8 @@ import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import userStore from "../../store/user_store.jsx";
-import utils from "../../utils/utils.js";
+import userStore from "../store/user_store.jsx";
+import utils from "../utils/utils.js";
 
 import TreeUpdate from './tree_update.jsx';
 

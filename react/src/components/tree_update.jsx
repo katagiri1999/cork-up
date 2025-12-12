@@ -8,9 +8,10 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import userStore from '../../store/user_store.jsx';
-import utils from "../../utils/utils.js";
-import Loading from '../loading.jsx';
+import userStore from '../store/user_store.jsx';
+import utils from "../utils/utils.js";
+
+import Loading from './loading.jsx';
 
 function TreeUpdate(props) {
   const navigate = useNavigate();
