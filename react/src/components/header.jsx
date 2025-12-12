@@ -11,7 +11,7 @@ function Header() {
   const { id_token } = userStore();
 
   return (
-    <AppBar position="static" sx={{ mb: 7 }}>
+    <AppBar position="static">
       <Toolbar style={{ display: "flex" }}>
 
         {id_token &&

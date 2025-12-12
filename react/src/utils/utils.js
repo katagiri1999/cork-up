@@ -1,6 +1,7 @@
 export default {
     requests,
     get_url_id,
+    get_node,
     update_tree,
     delete_tree_node,
     is_valid_new_node,
@@ -48,6 +49,23 @@ function get_url_id() {
     const url_id = params.get("id");
     return url_id;
 }
+
+function get_node(tree, target_id) {
+  if (!tree) return null;
+
+  if (tree.id === target_id) {
+    return tree;
+  }
+
+  if (tree.children) {
+    for (const child of tree.children) {
+      const result = get_node(child, target_id);
+      if (result) return result;
+    }
+  }
+
+  return null;
+};
 
 function update_tree(tree, insert_node) {
     const { parent_id, label } = insert_node;
