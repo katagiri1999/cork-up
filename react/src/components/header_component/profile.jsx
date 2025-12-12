@@ -22,8 +22,6 @@ function Profile() {
   const [isMenuOpen, setIsMenuOpen] = useState(null);
   const [isOpenLogoutDialog, setOpenLogoutDialog] = useState(false);
 
-  const initialName = email.charAt(0).toUpperCase();
-
   const handleMenuOpen = (event) => {
     setIsMenuOpen(event.currentTarget);
   };
@@ -69,7 +67,7 @@ function Profile() {
           sx={{ position: "absolute", right: 10 }}
         >
           <Tooltip title={`${email} でログイン中`}>
-            <Avatar>{initialName}</Avatar>
+            <Avatar>{email.charAt(0).toUpperCase()}</Avatar>
           </Tooltip>
         </IconButton>
 

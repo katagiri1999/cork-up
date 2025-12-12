@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 import Header from "../components/header.jsx";
 import Loading from "../components/loading.jsx";
+import MarkdownEditor from "../components/markdowneditor.jsx";
 import userStore from "../store/user_store.jsx";
 import utils from "../utils/utils.js";
-import MarkdownEditor from "../components/markdowneditor.jsx";
 
 function Main() {
   const { id_token, setTree } = userStore();
