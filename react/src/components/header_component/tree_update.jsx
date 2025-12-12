@@ -45,13 +45,14 @@ function TreeUpdate(props) {
   };
 
   const clickCreateNewContent = async () => {
-    var isValid = utils.is_valid_new_node(tree, currentNodeId, newContentName);
+    const insert_node = { id: `${currentNodeId}/${newContentName}`, label: newContentName };
+
+    var isValid = utils.is_valid_new_node(tree, insert_node);
     if (!isValid) {
       setIsInvalidId(true);
       return;
     }
 
-    const insert_node = { parent_id: currentNodeId, label: newContentName };
     const new_tree = utils.update_tree(tree, insert_node);
 
     setLoading(true);

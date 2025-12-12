@@ -84,17 +84,15 @@ function get_parent_ids(target_id) {
 };
 
 function update_tree(tree, insert_node) {
-    const { parent_id, label, children } = insert_node;
-    const new_node = {
-        id: `${parent_id}/${label}`,
-        label,
-        children: children ?? undefined,
-    };
+    const parts = insert_node.id.split("/").filter(Boolean);
+
+    const parentParts = parts.slice(0, -1);
+    const parent_id = "/" + parentParts.join("/");
 
     function insert(node) {
         if (node.id === parent_id) {
             node.children ??= [];
-            node.children.push(new_node);
+            node.children.push(insert_node);
             return true;
         }
 
@@ -119,14 +117,17 @@ function delete_tree_node(tree, target_id) {
     return tree;
 };
 
-function is_valid_new_node(tree, parent_id, label) {
-    if (!label) return false;
+function is_valid_new_node(tree, insert_node) {
+    if (!insert_node.id || !insert_node.label) return false;
+
+    const parts = insert_node.id.split("/").filter(Boolean);
+
+    const parentParts = parts.slice(0, -1);
+    const parent_id = "/" + parentParts.join("/");
 
     const parent = get_node(tree, parent_id);
     if (!parent) return false;
 
-    const target_id = `${parent_id}/${label}`;
     const siblings = parent.children ?? [];
-
-    return !siblings.some(child => child.id === target_id);
+    return !siblings.some(child => child.label === insert_node.label);
 };
