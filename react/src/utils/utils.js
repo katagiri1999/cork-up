@@ -85,21 +85,13 @@ function get_parent_ids(target_id) {
 
 function update_tree(tree, insert_node) {
     const parts = insert_node.id.split("/").filter(Boolean);
-
     const parentParts = parts.slice(0, -1);
     const parent_id = "/" + parentParts.join("/");
 
-    function insert(node) {
-        if (node.id === parent_id) {
-            node.children ??= [];
-            node.children.push(insert_node);
-            return true;
-        }
+    const parent = get_node(tree, parent_id);
+    parent.children ??= [];
+    parent.children.push(insert_node);
 
-        return (node.children ?? []).some(insert);
-    }
-
-    insert(tree);
     return tree;
 };
 
