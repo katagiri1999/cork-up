@@ -1,14 +1,14 @@
+import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from 'react';
 
 import Breadcrumb from "../components/breadcrumbs.jsx";
+import EditerHeader from "../components/editer_header.jsx";
 import Header from "../components/header.jsx";
 import Loading from "../components/loading.jsx";
 import MarkdownEditor from "../components/markdowneditor.jsx";
 import userStore from "../store/user_store.jsx";
 import utils from "../utils/utils.js";
-import EditerHeader from "../components/editer_header.jsx";
-import Box from "@mui/material/Box";
 
 function Main() {
   const { id_token, setTree } = userStore();

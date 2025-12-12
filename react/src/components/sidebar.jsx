@@ -1,4 +1,4 @@
-import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -25,7 +25,7 @@ function Sidebar() {
         sx={{ mr: 2 }}
       >
         <Tooltip title="Menu">
-          <ArrowForwardIosSharpIcon
+          <MenuIcon
             sx={{ fontSize: 30 }}
           />
         </Tooltip>

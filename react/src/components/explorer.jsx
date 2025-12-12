@@ -19,7 +19,7 @@ function Explorer() {
   const url_id = utils.get_url_id();
 
   const [currentNodeId, setCurrentNodeId] = useState(url_id || "");
-  const [expandedItems, setExpandedItems] = useState([]);
+  const [expandedItems, setExpandedItems] = useState(["/Folder"]);
   const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {

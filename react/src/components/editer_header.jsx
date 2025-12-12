@@ -1,7 +1,7 @@
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 
 function EditerHeader() {
   return (
@@ -15,7 +15,7 @@ function EditerHeader() {
         </IconButton>
       </Box>
     </>
-  )
+  );
 }
 
 export default EditerHeader;
