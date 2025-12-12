@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 
 import userStore from "../../store/user_store.jsx";
+import utils from "../../utils/utils.js";
 
 import TreeUpdate from './tree_update.jsx';
 
@@ -17,11 +18,25 @@ function Explorer() {
 
   const params = new URLSearchParams(location.search);
   const urlId = params.get("id");
+
   const [currentNodeId, setCurrentNodeId] = useState(urlId || "");
+  const [expandedItems, setExpandedItems] = useState([]);
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
     setCurrentNodeId(urlId || "");
   }, [urlId]);
+
+  useEffect(() => {
+    if (!hasInitialized && tree && urlId) {
+      const parents = utils.find_parent_ids(tree, urlId);
+      if (parents) {
+        var latest_expanded_items = [...new Set([...expandedItems, ...parents])];
+        setExpandedItems(latest_expanded_items);
+      }
+      setHasInitialized(true);
+    }
+  }, [tree, urlId, hasInitialized]);
 
   useEffect(() => {
     setTree(tree);
@@ -43,12 +58,14 @@ function Explorer() {
           <RichTreeView
             items={[tree]}
             onItemClick={handleItemClick}
+            selectedItems={[currentNodeId]}
+            expandedItems={expandedItems}
+            onExpandedItemsChange={(_, ids) => setExpandedItems(ids)}
             slots={{
               expandIcon: FolderIcon,
               collapseIcon: FolderOpenIcon,
               endIcon: ArticleOutlinedIcon,
             }}
-            defaultExpandedItems={['/Folder']}
           />
           <TreeUpdate currentNodeId={currentNodeId} />
         </Box>

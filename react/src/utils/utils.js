@@ -3,6 +3,7 @@ export default {
     update_tree,
     delete_tree_node,
     is_valid_new_node,
+    find_parent_ids,
 };
 
 async function requests(url, method, headers = {}, params = {}) {
@@ -120,4 +121,17 @@ function is_valid_new_node(tree, parent_id, label) {
 
     recursive_check(tree);
     return isUnique;
+}
+
+function find_parent_ids(tree, target_id, path = []) {
+    if (tree.id === target_id) return path;
+
+    if (tree.children) {
+        for (const child of tree.children) {
+            const result = find_parent_ids(child, target_id, [...path, tree.id]);
+            if (result) return result;
+        }
+    }
+
+    return null;
 }
