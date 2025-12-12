@@ -4,7 +4,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import { Box, Typography } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import userStore from "../../store/user_store.jsx";
 
@@ -12,8 +12,16 @@ import TreeUpdate from './tree_update.jsx';
 
 function Explorer() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id_token, tree, setTree } = userStore();
-  const [currentNodeId, setCurrentNodeId] = useState("");
+
+  const params = new URLSearchParams(location.search);
+  const urlId = params.get("id");
+  const [currentNodeId, setCurrentNodeId] = useState(urlId || "");
+
+  useEffect(() => {
+    setCurrentNodeId(urlId || "");
+  }, [urlId]);
 
   useEffect(() => {
     setTree(tree);
@@ -21,7 +29,6 @@ function Explorer() {
 
   const handleItemClick = (_, itemId) => {
     setCurrentNodeId(itemId);
-
     navigate(`/main?id=${itemId}`);
   };
 
