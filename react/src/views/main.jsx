@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import Container from "@mui/material/Container";
 import { useEffect, useState } from 'react';
 
 import Breadcrumb from "../components/breadcrumbs.jsx";
