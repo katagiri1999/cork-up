@@ -73,7 +73,7 @@ function TreeUpdate(props) {
     setLoading(true);
     closeModal();
 
-    var parents = utils.find_parent_ids(tree, currentNodeId);
+    var parents = utils.get_parent_ids(currentNodeId);
     const next_current_id = parents[parents.length - 1];
     var new_tree = utils.delete_tree_node(tree, currentNodeId);
 

@@ -2,7 +2,7 @@ export default {
     requests,
     get_url_id,
     get_node,
-    find_parent_ids,
+    get_parent_ids,
     update_tree,
     delete_tree_node,
     is_valid_new_node,
@@ -63,15 +63,18 @@ function get_node(tree, target_id) {
     return null;
 };
 
-function find_parent_ids(tree, target_id, path = []) {
-    if (tree.id === target_id) return path;
+function get_parent_ids(target_id) {
+    if (!target_id) return [];
 
-    for (const child of tree.children ?? []) {
-        const result = find_parent_ids(child, target_id, [...path, tree.id]);
-        if (result) return result;
+    const parts = target_id.split("/").filter(Boolean); // 空文字を除外
+    if (parts.length <= 1) return [];
+
+    const parentIds = [];
+    for (let i = 1; i < parts.length; i++) {
+        parentIds.push("/" + parts.slice(0, i).join("/"));
     }
 
-    return null;
+    return parentIds;
 };
 
 function update_tree(tree, insert_node) {

@@ -27,7 +27,7 @@ function Explorer() {
 
   useEffect(() => {
     if (!hasInitialized && tree && url_id) {
-      const parents = utils.find_parent_ids(tree, url_id);
+      const parents = utils.get_parent_ids(url_id);
       if (parents) {
         var latest_expanded_items = [...new Set([...expandedItems, ...parents])];
         setExpandedItems(latest_expanded_items);

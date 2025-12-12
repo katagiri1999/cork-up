@@ -22,7 +22,7 @@ function Main() {
     const url_id = params.get("id");
 
     if (tree && url_id) {
-      const parents = utils.find_parent_ids(tree, url_id) || [];
+      const parents = utils.get_parent_ids(url_id) || [];
 
       const nodes = [
         ...parents.map((id) => utils.get_node(tree, id)).filter(Boolean),
