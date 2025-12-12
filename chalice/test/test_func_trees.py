@@ -1,5 +1,7 @@
-from chalicelib import func_trees
 import uuid
+
+from chalicelib import func_trees
+
 from .conftest import logger
 
 

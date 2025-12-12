@@ -25,7 +25,7 @@ def get(params) -> dict:
     try:
         email: str = params["email"]
 
-        tree_info = dynamodbs.get_tree_info(email=email)
+        tree_info = dynamodbs.get_tree(email=email)
         if not tree_info:
             raise Exception({
                 "status_code": 404,
@@ -58,7 +58,7 @@ def put(params) -> dict:
                 "error_code": "func_trees.missing_parameters",
             })
 
-        tree_info = dynamodbs.get_tree_info(email=email)
+        tree_info = dynamodbs.get_tree(email=email)
         if not tree_info:
             raise Exception({
                 "status_code": 404,
@@ -68,8 +68,8 @@ def put(params) -> dict:
 
         tree = sort_tree(tree)
 
-        dynamodbs.update_tree_info(email=email, tree=tree)
-        tree_info = dynamodbs.get_tree_info(email=email)
+        dynamodbs.update_tree(email=email, tree=tree)
+        tree_info = dynamodbs.get_tree(email=email)
 
         res = {
             "tree": tree_info["tree"],

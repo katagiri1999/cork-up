@@ -4,7 +4,7 @@ from mypy_boto3_dynamodb import DynamoDBServiceResource
 from chalicelib import config
 
 
-def get_user_info(email: str) -> dict:
+def get_user(email: str) -> dict:
     try:
         dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
         table = dynamodb.Table(config.USER_TABLE_NAME)
@@ -19,7 +19,7 @@ def get_user_info(email: str) -> dict:
         raise e
 
 
-def get_tree_info(email: str) -> dict:
+def get_tree(email: str) -> dict:
     try:
         dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
         table = dynamodb.Table(config.TREE_TABLE_NAME)
@@ -34,7 +34,7 @@ def get_tree_info(email: str) -> dict:
         raise e
 
 
-def update_tree_info(email: str, tree: dict) -> dict:
+def update_tree(email: str, tree: dict) -> dict:
     try:
         dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
         table = dynamodb.Table(config.TREE_TABLE_NAME)

@@ -14,7 +14,7 @@ def main(params: dict) -> dict:
                 "error_code": "func_login.missing_parameters",
             })
 
-        user_info = dynamodbs.get_user_info(email=email)
+        user_info = dynamodbs.get_user(email=email)
         if user_info.get("password") != pw:
             raise Exception({
                 "status_code": 401,
