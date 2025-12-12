@@ -1,5 +1,6 @@
 export default {
     requests,
+    get_url_id,
     update_tree,
     delete_tree_node,
     is_valid_new_node,
@@ -41,6 +42,12 @@ async function requests(url, method, headers = {}, params = {}) {
     console.groupEnd();
     return res;
 };
+
+function get_url_id() {
+    const params = new URLSearchParams(location.search);
+    const url_id = params.get("id");
+    return url_id;
+}
 
 function update_tree(tree, insert_node) {
     const { parent_id, label } = insert_node;

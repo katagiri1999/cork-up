@@ -4,7 +4,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import { Box, Typography } from "@mui/material";
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import userStore from "../../store/user_store.jsx";
 import utils from "../../utils/utils.js";
@@ -13,30 +13,28 @@ import TreeUpdate from './tree_update.jsx';
 
 function Explorer() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { id_token, tree, setTree } = userStore();
 
-  const params = new URLSearchParams(location.search);
-  const urlId = params.get("id");
+  const url_id = utils.get_url_id();
 
-  const [currentNodeId, setCurrentNodeId] = useState(urlId || "");
+  const [currentNodeId, setCurrentNodeId] = useState(url_id || "");
   const [expandedItems, setExpandedItems] = useState([]);
   const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
-    setCurrentNodeId(urlId || "");
-  }, [urlId]);
+    setCurrentNodeId(url_id || "");
+  }, [url_id]);
 
   useEffect(() => {
-    if (!hasInitialized && tree && urlId) {
-      const parents = utils.find_parent_ids(tree, urlId);
+    if (!hasInitialized && tree && url_id) {
+      const parents = utils.find_parent_ids(tree, url_id);
       if (parents) {
         var latest_expanded_items = [...new Set([...expandedItems, ...parents])];
         setExpandedItems(latest_expanded_items);
       }
       setHasInitialized(true);
     }
-  }, [tree, urlId, hasInitialized]);
+  }, [tree, url_id, hasInitialized]);
 
   useEffect(() => {
     setTree(tree);
