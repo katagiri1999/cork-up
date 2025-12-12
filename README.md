@@ -53,3 +53,10 @@ OSSアプリケーションとして公開しておりますので、気軽に�
 | -                | -      | -                           | -      |
 | email            | str    | email                       | Partition Key |
 | tree             | object | tree content                |        |
+
+### nodes table
+| key              | type   | desctiption                 | option |
+| -                | -      | -                           | -      |
+| email            | str    | email                       | Partition Key |
+| id               | str    | node is                     | Sort Key      |
+| text             | str    | text                        |        |

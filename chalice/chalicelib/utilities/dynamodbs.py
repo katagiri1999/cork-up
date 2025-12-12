@@ -84,3 +84,36 @@ def get_nodes(email: str) -> dict:
 
     except Exception as e:
         raise e
+
+
+def post_node(email: str, node_id: str, text: str) -> dict:
+    try:
+        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
+        table = dynamodb.Table(config.NODES_TABLE_NAME)
+
+        table.put_item(
+            Item={
+                "email": email,
+                "id": node_id,
+                "text": text,
+            }
+        )
+
+    except Exception as e:
+        raise e
+
+
+def delete_node(email: str, node_id: str) -> dict:
+    try:
+        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
+        table = dynamodb.Table(config.NODES_TABLE_NAME)
+
+        table.delete_item(
+            Key={
+                "email": email,
+                "id": node_id,
+            }
+        )
+
+    except Exception as e:
+        raise e
