@@ -7,6 +7,8 @@ import Loading from "../components/loading.jsx";
 import MarkdownEditor from "../components/markdowneditor.jsx";
 import userStore from "../store/user_store.jsx";
 import utils from "../utils/utils.js";
+import EditerHeader from "../components/editer_header.jsx";
+import Box from "@mui/material/Box";
 
 function Main() {
   const { id_token, setTree } = userStore();
@@ -40,7 +42,11 @@ function Main() {
 
       <Container sx={{ mt: 2 }}>
 
-        <Breadcrumb />
+        <Box display="flex" justifyContent="space-between">
+          <Breadcrumb />
+          <EditerHeader />
+        </Box>
+
         <MarkdownEditor />
 
       </Container>
