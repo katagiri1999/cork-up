@@ -49,7 +49,14 @@ function get_url_id() {
     const params = new URLSearchParams(location.search);
     const url_id = params.get("id");
     return url_id;
-}
+};
+
+function get_parent_id_from_id(id) {
+    const parts = id.split("/").filter(Boolean);
+    const parentParts = parts.slice(0, -1);
+    const parent_id = "/" + parentParts.join("/");
+    return parent_id;
+};
 
 function get_node(tree, target_id) {
     const parts = target_id
@@ -84,10 +91,7 @@ function get_parent_ids(target_id) {
 };
 
 function update_tree(tree, insert_node) {
-    const parts = insert_node.id.split("/").filter(Boolean);
-    const parentParts = parts.slice(0, -1);
-    const parent_id = "/" + parentParts.join("/");
-
+    const parent_id = get_parent_id_from_id(insert_node.id);
     const parent = get_node(tree, parent_id);
     parent.children ??= [];
     parent.children.push(insert_node);
@@ -96,10 +100,7 @@ function update_tree(tree, insert_node) {
 };
 
 function delete_tree_node(tree, target_id) {
-    const parts = target_id.split("/").filter(Boolean);
-    const parentParts = parts.slice(0, -1);
-    const parent_id = "/" + parentParts.join("/");
-
+    const parent_id = get_parent_id_from_id(target_id);
     const parent = get_node(tree, parent_id);
     parent.children = parent.children.filter(child => child.id !== target_id);
     return tree;
@@ -108,11 +109,7 @@ function delete_tree_node(tree, target_id) {
 function is_valid_new_node(tree, insert_node) {
     if (!insert_node.id || !insert_node.label) return false;
 
-    const parts = insert_node.id.split("/").filter(Boolean);
-
-    const parentParts = parts.slice(0, -1);
-    const parent_id = "/" + parentParts.join("/");
-
+    const parent_id = get_parent_id_from_id(insert_node.id);
     const parent = get_node(tree, parent_id);
     if (!parent) return false;
 
