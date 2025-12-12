@@ -23,13 +23,7 @@ def main(params: dict) -> dict:
 
 def get(params) -> dict:
     try:
-        email: str = params.get("email")
-        if not email:
-            raise Exception({
-                "status_code": 400,
-                "exception": "Bad Request",
-                "error_code": "func_trees.missing_parameters",
-            })
+        email: str = params["email"]
 
         tree_info = dynamodbs.get_tree_info(email=email)
         if not tree_info:
@@ -42,7 +36,6 @@ def get(params) -> dict:
         tree_info["tree"] = sort_tree(tree_info["tree"])
 
         res = {
-            "email": tree_info["email"],
             "tree": tree_info["tree"],
         }
 
@@ -54,11 +47,11 @@ def get(params) -> dict:
 
 def put(params) -> dict:
     try:
-        email: str = params.get("email")
+        email: str = params["email"]
         body: dict = params.get("body")
         tree: dict = body.get("tree")
 
-        if not email or not tree:
+        if not tree:
             raise Exception({
                 "status_code": 400,
                 "exception": "Bad Request",
@@ -79,7 +72,6 @@ def put(params) -> dict:
         tree_info = dynamodbs.get_tree_info(email=email)
 
         res = {
-            "email": tree_info["email"],
             "tree": tree_info["tree"],
         }
 
