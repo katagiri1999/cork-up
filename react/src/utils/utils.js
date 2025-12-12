@@ -52,15 +52,21 @@ function get_url_id() {
 }
 
 function get_node(tree, target_id) {
-    if (!tree) return null;
-    if (tree.id === target_id) return tree;
+    const parts = target_id
+        .split("/")
+        .filter(part => part && part !== "Folder");
 
-    for (const child of tree.children ?? []) {
-        const result = get_node(child, target_id);
-        if (result) return result;
+    let current = tree;
+    for (const part of parts) {
+        if (!Array.isArray(current.children)) return null;
+
+        const next = current.children.find(child => child.label === part);
+        if (!next) return null;
+
+        current = next;
     }
 
-    return null;
+    return current;
 };
 
 function get_parent_ids(target_id) {
