@@ -1,4 +1,5 @@
 import boto3
+from boto3.dynamodb.conditions import Key
 from mypy_boto3_dynamodb import DynamoDBServiceResource
 
 from chalicelib import config
@@ -45,6 +46,23 @@ def update_tree(email: str, tree: dict) -> dict:
                 "tree": tree,
             }
         )
+
+    except Exception as e:
+        raise e
+
+
+def get_nodes(email: str) -> dict:
+    try:
+        dynamodb: DynamoDBServiceResource = boto3.resource("dynamodb")
+        table = dynamodb.Table(config.NODES_TABLE_NAME)
+
+        response = table.query(
+            KeyConditionExpression=Key("email").eq(email)
+        )
+
+        items = response.get("Items", [])
+
+        return items
 
     except Exception as e:
         raise e

@@ -2,7 +2,7 @@ import json
 
 from chalice import Chalice
 from chalice.app import Request, Response
-from chalicelib import func_login, func_logout, func_trees
+from chalicelib import func_login, func_logout, func_nodes, func_trees
 
 app = Chalice(app_name='cork-up-api')
 app.log.setLevel("INFO")
@@ -26,6 +26,13 @@ def logout_api_handler():
 def trees_api_handler():
     params = http_request_handler(app.current_request)
     res = func_trees.main(params)
+    return http_response_handler(res)
+
+
+@app.route("/nodes", methods=["GET", "POST", "PUT", "DELETE"], content_types=["application/json"], cors=True)
+def trees_api_handler():
+    params = http_request_handler(app.current_request)
+    res = func_nodes.main(params)
     return http_response_handler(res)
 
 
