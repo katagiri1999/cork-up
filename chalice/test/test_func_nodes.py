@@ -6,7 +6,7 @@ POST_NODE_ID = "test_id_12345"
 
 
 class TestSuccessGET:
-    def test_func_nodes_get1(self, id_token):
+    def test_func_nodes_get_normal(self, id_token):
         params = {
             "method": "GET",
             "headers": {
@@ -21,7 +21,7 @@ class TestSuccessGET:
         assert response["status_code"] == 200
         assert type(response["body"]["nodes"]) is list
 
-    def test_func_nodes_get2(self, id_token):
+    def test_func_nodes_get_normal_with_params(self, id_token):
         params = {
             "method": "GET",
             "headers": {
@@ -38,20 +38,7 @@ class TestSuccessGET:
 
 
 class TestFailGet:
-    def test_func_node_get1(self):
-        params = {
-            "method": "GET",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
-    def test_func_node_get2(self):
+    def test_func_node_get_no_token(self):
         params = {
             "method": "GET",
             "headers": {
@@ -65,7 +52,20 @@ class TestFailGet:
         logger(response)
         assert response["status_code"] == 401
 
-    def test_func_node_get3(self, invalid_id_token):
+    def test_func_node_get_omit_token(self):
+        params = {
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+    def test_func_node_get_invalid_token(self, invalid_id_token):
         params = {
             "method": "GET",
             "headers": {
@@ -79,7 +79,7 @@ class TestFailGet:
         logger(response)
         assert response["status_code"] == 401
 
-    def test_func_node_get4(self, nonuser_id_token):
+    def test_func_node_get_nonuser_token(self, nonuser_id_token):
         params = {
             "method": "GET",
             "headers": {
@@ -93,7 +93,7 @@ class TestFailGet:
         logger(response)
         assert response["status_code"] == 404
 
-    def test_func_node_get5(self, nonuser_id_token):
+    def test_func_node_get_with_params_nonuser_token(self, nonuser_id_token):
         params = {
             "method": "GET",
             "headers": {
@@ -111,7 +111,7 @@ class TestFailGet:
 
 
 class TestSuccessPost:
-    def test_func_nodes_post1(self, id_token):
+    def test_func_nodes_post_normal(self, id_token):
         params = {
             "method": "POST",
             "headers": {
@@ -131,21 +131,7 @@ class TestSuccessPost:
 
 
 class TestFailPost:
-    def test_func_nodes_post1(self):
-        params = {
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
-
-    def test_func_nodes_post2(self):
+    def test_func_nodes_post_no_token(self):
         params = {
             "method": "POST",
             "headers": {
@@ -159,8 +145,20 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 401
 
+    def test_func_nodes_post_omit_token(self):
+        params = {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
 
-    def test_func_nodes_post3(self, id_token):
+    def test_func_nodes_post_no_params(self, id_token):
         params = {
             "method": "POST",
             "headers": {
@@ -177,8 +175,7 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 400
 
-
-    def test_func_nodes_post4(self, id_token):
+    def test_func_nodes_post_conflict(self, id_token):
         params = {
             "method": "POST",
             "headers": {
@@ -197,7 +194,7 @@ class TestFailPost:
 
 
 class TestSuccessDelete:
-    def test_func_nodes_delete1(self, id_token):
+    def test_func_nodes_delete_normal(self, id_token):
         params = {
             "method": "DELETE",
             "headers": {
@@ -216,7 +213,21 @@ class TestSuccessDelete:
 
 
 class TestFailDelete:
-    def test_func_nodes_delete1(self):
+    def test_func_nodes_delete_no_token(self):
+        params = {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": ""
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+    def test_func_nodes_delete_omit_token(self):
         params = {
             "method": "DELETE",
             "headers": {
@@ -231,23 +242,7 @@ class TestFailDelete:
         logger(response)
         assert response["status_code"] == 401
 
-
-    def test_func_nodes_delete2(self):
-        params = {
-            "method": "DELETE",
-            "headers": {
-                "content-type": "application/json",
-                "authorization": ""
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
-
-    def test_func_nodes_delete3(self, id_token):
+    def test_func_nodes_delete_noexist_node(self, id_token):
         params = {
             "method": "DELETE",
             "headers": {
@@ -263,8 +258,7 @@ class TestFailDelete:
         logger(response)
         assert response["status_code"] == 404
 
-
-    def test_func_nodes_delete4(self, id_token):
+    def test_func_nodes_delete_no_params(self, id_token):
         params = {
             "method": "DELETE",
             "headers": {

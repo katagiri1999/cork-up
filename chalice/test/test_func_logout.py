@@ -4,7 +4,7 @@ from .conftest import logger
 
 
 class TestSuccessPost:
-    def test_func_logout1(self, id_token):
+    def test_func_logout_normal(self, id_token):
         params = {
             "method": "POST",
             "headers": {
@@ -23,7 +23,7 @@ class TestSuccessPost:
 
 
 class TestFailPost:
-    def test_func_logout1(self):
+    def test_func_logout_no_token(self):
         params = {
             "method": "POST",
             "headers": {
@@ -37,8 +37,7 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 400
 
-
-    def test_func_logout2(self):
+    def test_func_logout_omit_token(self):
         params = {
             "method": "POST",
             "headers": {

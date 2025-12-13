@@ -4,7 +4,7 @@ from .conftest import logger
 
 
 class TestSuccessPost:
-    def test_func_login1(self):
+    def test_func_login_normal(self):
         params = {
             "method": "POST",
             "headers": {
@@ -26,7 +26,7 @@ class TestSuccessPost:
 
 
 class TestFailPost:
-    def test_func_login1(self):
+    def test_func_login_no_params(self):
         params = {
             "method": "POST",
             "headers": {
@@ -42,25 +42,20 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 400
 
-
-    def test_func_login2(self):
+    def test_func_login_omit_params(self):
         params = {
             "method": "POST",
             "headers": {
                 "content-type": "application/json"
             },
-            "body": {
-                "email": "",
-                "password": ""
-            },
+            "body": {},
             "query_params": {},
         }
         response = func_login.main(params)
         logger(response)
         assert response["status_code"] == 400
 
-
-    def test_func_login3(self):
+    def test_func_login_invalid_pw(self):
         params = {
             "method": "POST",
             "headers": {
@@ -76,8 +71,7 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 401
 
-
-    def test_func_login4(self):
+    def test_func_login_invalid_id_and_pw(self):
         params = {
             "method": "POST",
             "headers": {
