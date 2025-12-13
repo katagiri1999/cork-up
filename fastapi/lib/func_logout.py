@@ -1,4 +1,4 @@
-from chalicelib.utilities import utils
+from lib.utilities import utils
 
 
 def main(params: dict) -> dict:

@@ -1,8 +1,7 @@
 import boto3
+from lib import config
 from boto3.dynamodb.conditions import Key
 from mypy_boto3_dynamodb.service_resource import Table
-
-from chalicelib import config
 
 
 def _get_table(table_name: str) -> Table:

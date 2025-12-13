@@ -1,4 +1,4 @@
-from chalicelib import func_logout
+from lib import func_logout
 
 from .conftest import logger
 

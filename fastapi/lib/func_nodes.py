@@ -1,4 +1,4 @@
-from chalicelib.utilities import dynamodbs, utils
+from lib.utilities import dynamodbs, utils
 
 
 def main(params: dict) -> dict:

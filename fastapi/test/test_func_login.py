@@ -1,4 +1,4 @@
-from chalicelib import func_login
+from lib import func_login
 
 from .conftest import logger
 
