@@ -3,13 +3,12 @@ import logging
 
 import pytest
 
-from chalicelib.utilities import utils
+from lib.utilities import utils
 
 _logger = logging.getLogger('Logger')
 _logger.setLevel(logging.INFO)
 _console_handler = logging.StreamHandler()
-_formatter = logging.Formatter(
-    '[%(levelname)s][%(filename)s:%(lineno)d] %(message)s')
+_formatter = logging.Formatter('[%(levelname)s][%(filename)s:%(lineno)d] %(message)s')
 _console_handler.setFormatter(_formatter)
 _logger.addHandler(_console_handler)
 

@@ -1,4 +1,4 @@
-from chalicelib import func_trees
+from lib import func_trees
 
 from .conftest import logger
 
