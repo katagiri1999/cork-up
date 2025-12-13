@@ -130,6 +130,72 @@ class TestSuccessPost:
         assert type(response["body"]["node"]) is dict
 
 
+class TestFailPost:
+    def test_func_nodes_post1(self):
+        params = {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+
+    def test_func_nodes_post2(self):
+        params = {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": ""
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+
+    def test_func_nodes_post3(self, id_token):
+        params = {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": f"Bearer {id_token}"
+            },
+            "body": {
+                "node_id": "",
+                "text": "",
+            },
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 400
+
+
+    def test_func_nodes_post4(self, id_token):
+        params = {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": f"Bearer {id_token}"
+            },
+            "body": {
+                "node_id": f"{POST_NODE_ID}",
+                "text": f"#{POST_NODE_ID}",
+            },
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 409
+
+
 class TestSuccessDelete:
     def test_func_nodes_delete1(self, id_token):
         params = {
@@ -147,3 +213,69 @@ class TestSuccessDelete:
         logger(response)
         assert response["status_code"] == 200
         assert type(response["body"]["node"]) is dict
+
+
+class TestFailDelete:
+    def test_func_nodes_delete1(self):
+        params = {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json",
+            },
+            "body": {},
+            "query_params": {
+                "node_id": f"{POST_NODE_ID}",
+            },
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+
+    def test_func_nodes_delete2(self):
+        params = {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": ""
+            },
+            "body": {},
+            "query_params": {},
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 401
+
+
+    def test_func_nodes_delete3(self, id_token):
+        params = {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": f"Bearer {id_token}"
+            },
+            "body": {},
+            "query_params": {
+                "node_id": "non_exist_node_id",
+            },
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 404
+
+
+    def test_func_nodes_delete4(self, id_token):
+        params = {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json",
+                "authorization": f"Bearer {id_token}"
+            },
+            "body": {},
+            "query_params": {
+                "node_id": "",
+            },
+        }
+        response = func_nodes.main(params)
+        logger(response)
+        assert response["status_code"] == 400
