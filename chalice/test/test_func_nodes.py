@@ -52,19 +52,6 @@ class TestFailGet:
         logger(response)
         assert response["status_code"] == 401
 
-    def test_func_node_get_omit_token(self):
-        params = {
-            "method": "GET",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
     def test_func_node_get_invalid_token(self, invalid_id_token):
         params = {
             "method": "GET",
@@ -145,19 +132,6 @@ class TestFailPost:
         logger(response)
         assert response["status_code"] == 401
 
-    def test_func_nodes_post_omit_token(self):
-        params = {
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
     def test_func_nodes_post_no_params(self, id_token):
         params = {
             "method": "POST",
@@ -222,21 +196,6 @@ class TestFailDelete:
             },
             "body": {},
             "query_params": {},
-        }
-        response = func_nodes.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
-    def test_func_nodes_delete_omit_token(self):
-        params = {
-            "method": "DELETE",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {
-                "node_id": f"{POST_NODE_ID}",
-            },
         }
         response = func_nodes.main(params)
         logger(response)

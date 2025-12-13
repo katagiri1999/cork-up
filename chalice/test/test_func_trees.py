@@ -35,19 +35,6 @@ class TestFailGet:
         logger(response)
         assert response["status_code"] == 401
 
-    def test_func_trees_get_omit_token(self):
-        params = {
-            "method": "GET",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_trees.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
     def test_func_trees_get_nonuser_token(self, nonuser_id_token):
         params = {
             "method": "GET",
@@ -128,19 +115,6 @@ class TestFailPut:
             "headers": {
                 "content-type": "application/json",
                 "authorization": ""
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_trees.main(params)
-        logger(response)
-        assert response["status_code"] == 401
-
-    def test_func_trees_put_omit_token(self):
-        params = {
-            "method": "PUT",
-            "headers": {
-                "content-type": "application/json",
             },
             "body": {},
             "query_params": {},

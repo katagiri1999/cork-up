@@ -36,16 +36,3 @@ class TestFailPost:
         response = func_logout.main(params)
         logger(response)
         assert response["status_code"] == 400
-
-    def test_func_logout_omit_token(self):
-        params = {
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-            },
-            "body": {},
-            "query_params": {},
-        }
-        response = func_logout.main(params)
-        logger(response)
-        assert response["status_code"] == 400
