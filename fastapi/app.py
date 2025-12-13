@@ -12,22 +12,14 @@ handler = Mangum(app)
 async def handle_trees(request: Request):
     params = await handle_request(request)
     res = func_trees.main(params)
-    return JSONResponse(
-        status_code=res["status_code"],
-        headers=res["headers"],
-        content=res["body"]
-    )
+    return handle_response(res)
 
 
 @app.api_route("/nodes", methods=["GET", "POST", "DELETE"])
 async def handle_nodes(request: Request):
     params = await handle_request(request)
     res = func_nodes.main(params)
-    return JSONResponse(
-        status_code=res["status_code"],
-        headers=res["headers"],
-        content=res["body"]
-    )
+    return handle_response(res)
 
 
 async def handle_request(request: Request) -> dict:
@@ -45,3 +37,11 @@ async def handle_request(request: Request) -> dict:
     }
 
     return params
+
+
+def handle_response(res: dict) -> JSONResponse:
+    return JSONResponse(
+        status_code=res["status_code"],
+        headers=res["headers"],
+        content=res["body"]
+    )
