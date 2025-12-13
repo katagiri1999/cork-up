@@ -1,6 +1,7 @@
 from mangum import Mangum
 
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from lib import func_nodes, func_trees
 
 app = FastAPI()
@@ -10,13 +11,23 @@ handler = Mangum(app)
 @app.api_route("/trees", methods=["GET", "PUT"])
 async def handle_trees(request: Request):
     params = await handle_request(request)
-    return func_trees(params)
+    res = func_trees.main(params)
+    return JSONResponse(
+        status_code=res["status_code"],
+        headers=res["headers"],
+        content=res["body"]
+    )
 
 
 @app.api_route("/nodes", methods=["GET", "POST", "DELETE"])
 async def handle_nodes(request: Request):
     params = await handle_request(request)
-    return func_nodes(params)
+    res = func_nodes.main(params)
+    return JSONResponse(
+        status_code=res["status_code"],
+        headers=res["headers"],
+        content=res["body"]
+    )
 
 
 async def handle_request(request: Request) -> dict:
